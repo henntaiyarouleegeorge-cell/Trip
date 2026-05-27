@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#2A1840">
+<title>京都散策手帳 ｜ 5.29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light only;
+  --bg-base: #F5EFF8;
+  --bg-paper: #FDFAFF;
+  --ink: #2A1840;
+  --ink-soft: #4A3F60;
+  --ink-mute: #7C658E;
+  --line: #C9B8D5;
+  --line-soft: #E5D9EC;
+  --accent: #8B6FAB;
+  --accent-soft: #B89FCB;
+  --accent-deep: #5C3D7A;
+  --gold: #B8956A;
+  --sakura: #E8B5C2;
+  --red-seal: #B85C5C;
+  --serif-jp: 'Shippori Mincho', serif;
+  --serif-en: 'Cormorant Garamond', serif;
+  --body: 'Noto Sans TC', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--body);
+  background: var(--bg-base);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: 80px;
+  overscroll-behavior-y: none;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(184, 159, 203, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(232, 181, 194, 0.06) 0%, transparent 40%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(124, 101, 142, 0.04) 31px, rgba(124, 101, 142, 0.04) 32px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  padding: 40px 0 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.date-stamp {
+  display: inline-flex;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--red-seal);
+  border-radius: 4px;
+  color: var(--red-seal);
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+  background: rgba(184, 92, 92, 0.04);
+}
+
+.title-jp {
+  font-family: var(--serif-jp);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 8px;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.title-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-mute);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.title-meta {
+  font-family: var(--serif-jp);
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 6px;
+  margin-top: 12px;
+}
+
+.now-card {
+  background: linear-gradient(135deg, #FFF8FA 0%, #F8F4FF 100%);
+  border: 1px solid var(--accent-soft);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.now-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--sakura));
+}
+
+.now-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--accent-deep);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.now-content {
+  font-size: 15px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.now-time {
+  font-family: var(--serif-en);
+  font-size: 13px;
+  color: var(--accent-deep);
+  margin-top: 4px;
+}
+
+.progress-wrap {
+  margin-bottom: 28px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--line-soft);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--sakura));
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--line) 0%, var(--line) 90%, transparent 100%);
+}
+
+.stop {
+  position: relative;
+  margin-bottom: 18px;
+  background: var(--bg-paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 18px;
+  transition: all 0.3s ease;
+}
+
+.stop.completed {
+  opacity: 0.5;
+  background: rgba(245, 239, 248, 0.5);
+}
+
+.stop.featured {
+  border: 2px solid var(--sakura);
+  background: linear-gradient(135deg, #FFF8FA 0%, #FDFAFF 100%);
+  box-shadow: 0 4px 16px rgba(232, 181, 194, 0.15);
+}
+
+.stop.now {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(124, 101, 142, 0.2);
+}
+
+.stop-dot {
+  position: absolute;
+  left: -28px;
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-base);
+  border: 2px solid var(--ink-mute);
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.stop.completed .stop-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.stop.featured .stop-dot {
+  background: var(--sakura);
+  border-color: var(--red-seal);
+  box-shadow: 0 0 0 3px rgba(184, 92, 92, 0.15);
+}
+
+.stop.now .stop-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 101, 142, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(124, 101, 142, 0); }
+}
+
+.stop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.stop-time {
+  font-family: var(--serif-en);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--accent-deep);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.stop-check {
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg-paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.stop-check:active { transform: scale(0.92); }
+
+.stop.completed .stop-check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.stop-title {
+  font-family: var(--serif-jp);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 1px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.stop-title-sub {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-mute);
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.stop-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  border-radius: 12px;
+  background: rgba(184, 159, 203, 0.12);
+  color: var(--accent-deep);
+  border: 1px solid var(--line-soft);
+}
+
+.tag.gold {
+  background: rgba(184, 149, 106, 0.1);
+  color: var(--gold);
+  border-color: rgba(184, 149, 106, 0.3);
+}
+
+.tag.red {
+  background: rgba(184, 92, 92, 0.08);
+  color: var(--red-seal);
+  border-color: rgba(184, 92, 92, 0.25);
+}
+
+.stop-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 8px 0 12px;
+}
+
+.stop-desc strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 11px 8px;
+  background: var(--bg-base);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-family: var(--body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.btn:active {
+  transform: scale(0.96);
+  background: var(--line-soft);
+}
+
+.btn.primary {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+
+.btn.primary:active {
+  background: var(--accent-deep);
+}
+
+.btn-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.stop.featured .featured-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--red-seal);
+  color: white;
+  font-size: 10px;
+  letter-spacing: 3px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: var(--serif-jp);
+}
+
+.surprise-hint {
+  background: rgba(232, 181, 194, 0.12);
+  border-left: 2px solid var(--red-seal);
+  padding: 10px 12px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-style: italic;
+  font-family: var(--serif-jp);
+}
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 24px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 24px rgba(42, 24, 64, 0.3);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px 0;
+  border-top: 1px dashed var(--line);
+}
+
+.footer-jp {
+  font-family: var(--serif-jp);
+  font-size: 13px;
+  color: var(--ink-mute);
+  letter-spacing: 6px;
+  margin-bottom: 6px;
+}
+
+.footer-en {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 2px;
+}
+
+.controls {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 100;
+}
+
+.fab {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(42, 24, 64, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.fab:active { transform: scale(0.92); }
+
+@supports (padding: max(0px)) {
+  body { padding-bottom: max(80px, env(safe-area-inset-bottom)); }
+  .controls { bottom: max(16px, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 380px) {
+  .title-jp { font-size: 28px; letter-spacing: 6px; }
+  .stop-title { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <div class="date-stamp">— 2026.05.29 FRI —</div>
+    <h1 class="title-jp">京都散策</h1>
+    <div class="title-en">Kyoto Wandering · Day Three</div>
+    <div class="title-meta">L I U  ×  L I N</div>
+  </header>
+
+  <div class="now-card" id="nowCard">
+    <div class="now-label">Right Now</div>
+    <div class="now-content" id="nowContent">準備出發 · 早上 09:00 從飯店前往京都</div>
+    <div class="now-time" id="nowTime">—</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>PROGRESS</span>
+      <span id="progressText">0 / 9</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="timeline" id="timeline"></div>
+
+  <footer class="footer">
+    <div class="footer-jp">京 都 散 策 手 帳</div>
+    <div class="footer-en">For my dearest — 5.29.2026</div>
+  </footer>
+
+</div>
+
+<div class="controls">
+  <button class="fab" id="resetBtn" title="重設所有打勾">↺</button>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+
+const STOPS = [
+  {
+    id: 's01',
+    time: '09:00',
+    title: '飯店出發',
+    titleSub: 'Departure from Hotel',
+    desc: 'Apartment Hotel 11 日本橋 → 近鐵日本橋站 → 大阪難波 → JR 大阪站',
+    tags: ['交通', '出發'],
+    address: '〒542-0073 大阪府大阪市中央区日本橋1-11-6',
+    mapsQuery: 'Apartment Hotel 11 Nippombashi',
+    duration: 60
+  },
+  {
+    id: 's02',
+    time: '10:30',
+    title: 'おきもの屋 清水店',
+    titleSub: 'Okimono-ya · Kimono Rental',
+    desc: '預約 10:00 場（提早抵達）。全妝 + 著裝 + 髮型約 60 分鐘、之後外拍 1 小時。',
+    tags: ['和服', '預約 10:00'],
+    address: '〒605-0862 京都府京都市東山区清水4丁目188 清水ビル 2F',
+    mapsQuery: 'おきもの屋 京都清水店',
+    duration: 90
+  },
+  {
+    id: 's03',
+    time: '11:30',
+    title: '八坂塔・二三年坂',
+    titleSub: 'Yasaka Pagoda & Slopes',
+    desc: '八坂塔 → 二寧坂 → 産寧坂 → 清水寺前。1 小時專業外拍。',
+    tags: ['外拍', '世界遺產'],
+    address: '〒605-0827 京都府京都市東山区八坂上町388',
+    mapsQuery: '八坂の塔 法観寺',
+    duration: 60
+  },
+  {
+    id: 's04',
+    time: '12:30',
+    title: '還和服 · 計程車',
+    titleSub: 'Return Kimono · Taxi',
+    desc: '回 Okimono 屋還和服、換回便服。叫計程車 → 下鴨神社（約 25 分鐘 ¥2,500）。',
+    tags: ['交通', '計程車'],
+    address: '〒605-0862 京都府京都市東山区清水4丁目188',
+    mapsQuery: 'おきもの屋 京都清水店',
+    duration: 30
+  },
+  {
+    id: 's05',
+    time: '13:30',
+    title: '下鴨神社',
+    titleSub: 'Shimogamo Shrine · UNESCO',
+    desc: '世界遺產、京都最古老神社之一。先參拜本殿、走過糺の森（古林木道）。',
+    tags: ['神社', '世界遺產', '免費'],
+    address: '〒606-0807 京都府京都市左京区下鴨泉川町59',
+    mapsQuery: '下鴨神社',
+    duration: 30
+  },
+  {
+    id: 's06',
+    time: '13:45',
+    title: '相生社',
+    titleSub: 'Aioi-no-Yashiro · Love Shrine',
+    desc: '下鴨神社境內、戀愛結緣神社。日本罕見的「戒指型御守」💍 給老婆驚喜。',
+    tags: ['💍 驚喜', '戒指御守', '結緣'],
+    address: '〒606-0807 京都府京都市左京区下鴨泉川町59',
+    mapsQuery: '下鴨神社 相生社',
+    duration: 30,
+    featured: true,
+    surprise: '這是 5/29 的隱藏驚喜 — 拿到戒指御守時、給老婆說「我們補一個正式的求婚」 💜'
+  },
+  {
+    id: 's07',
+    time: '14:30',
+    title: '加茂みたらし茶屋',
+    titleSub: 'Kamo Mitarashi Chaya',
+    desc: '下鴨神社旁百年茶屋、御手洗團子發源地。輕食、抹茶、和菓子。',
+    tags: ['午餐', '和菓子'],
+    address: '〒606-0808 京都府京都市左京区下鴨松ノ木町53',
+    mapsQuery: '加茂みたらし茶屋',
+    duration: 60
+  },
+  {
+    id: 's08',
+    time: '16:00',
+    title: '伏見稻荷大社',
+    titleSub: 'Fushimi Inari Taisha',
+    desc: '京阪電車 出町柳 → 伏見稻荷（約 25 分鐘 ¥280）。千本鳥居、走到四ツ辻看京都市景。',
+    tags: ['神社', '千本鳥居', '免費'],
+    address: '〒612-0882 京都府京都市伏見区深草薮之内町68',
+    mapsQuery: '伏見稲荷大社',
+    duration: 90
+  },
+  {
+    id: 's09',
+    time: '18:00',
+    title: 'AIN SOPH. Journey',
+    titleSub: 'Vegan Dinner · Kyoto',
+    desc: '100% 純素 + 五葷抜き對應 ✓。河原町商圈、阪急京都河原町站徒步 3 分。招牌：天國鬆餅、Vegan 漢堡排定食。',
+    tags: ['素食', '無五辛', '晚餐'],
+    address: '〒604-8043 京都府京都市中京区裏寺町597-1',
+    mapsQuery: 'AIN SOPH Journey 京都',
+    duration: 120
+  }
+];
+
+const STORAGE_KEY = 'kyoto_5_29_progress_v1';
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return (typeof parsed === 'object' && parsed !== null) ? parsed : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveProgress(p) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+  } catch (e) {}
+}
+
+let progress = loadProgress();
+let toastTimer = null;
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 1800);
+}
+
+async function copyText(text, label) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('已複製 ' + label);
+      return;
+    } catch (e) {}
+  }
+  try {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    textarea.style.top = '0';
+    textarea.setAttribute('readonly', '');
+    document.body.appendChild(textarea);
+    textarea.select();
+    textarea.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    if (ok) {
+      showToast('已複製 ' + label);
+    } else {
+      showToast('複製失敗、請手動複製');
+    }
+  } catch (e) {
+    showToast('複製失敗、請手動複製');
+  }
+}
+
+function openMaps(query) {
+  const encoded = encodeURIComponent(query);
+  const url = 'https://www.google.com/maps/search/?api=1&query=' + encoded;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function renderTimeline() {
+  const container = document.getElementById('timeline');
+  if (!container) return;
+  const frag = document.createDocumentFragment();
+
+  STOPS.forEach((stop, idx) => {
+    const isCompleted = !!progress[stop.id];
+    const isFeatured = !!stop.featured;
+
+    const article = document.createElement('article');
+    article.className = 'stop' + (isCompleted ? ' completed' : '') + (isFeatured ? ' featured' : '');
+    article.dataset.id = stop.id;
+    article.dataset.index = idx;
+
+    const dot = document.createElement('div');
+    dot.className = 'stop-dot';
+    article.appendChild(dot);
+
+    const header = document.createElement('div');
+    header.className = 'stop-header';
+
+    const time = document.createElement('div');
+    time.className = 'stop-time';
+    time.textContent = stop.time;
+    header.appendChild(time);
+
+    const check = document.createElement('button');
+    check.className = 'stop-check';
+    check.setAttribute('aria-label', '標記完成');
+    check.innerHTML = '✓';
+    check.addEventListener('click', () => toggleComplete(stop.id));
+    header.appendChild(check);
+
+    article.appendChild(header);
+
+    if (isFeatured) {
+      const badge = document.createElement('div');
+      badge.className = 'featured-badge';
+      badge.textContent = '驚 喜';
+      article.appendChild(badge);
+    }
+
+    const title = document.createElement('h2');
+    title.className = 'stop-title';
+    title.textContent = stop.title;
+    article.appendChild(title);
+
+    const titleSub = document.createElement('div');
+    titleSub.className = 'stop-title-sub';
+    titleSub.textContent = stop.titleSub;
+    article.appendChild(titleSub);
+
+    const meta = document.createElement('div');
+    meta.className = 'stop-meta';
+    stop.tags.forEach(t => {
+      const tag = document.createElement('span');
+      let cls = 'tag';
+      if (t.indexOf('💍') !== -1) cls += ' red';
+      else if (t.indexOf('世界遺產') !== -1 || t.indexOf('預約') !== -1) cls += ' gold';
+      tag.className = cls;
+      tag.textContent = t;
+      meta.appendChild(tag);
+    });
+    article.appendChild(meta);
+
+    const desc = document.createElement('p');
+    desc.className = 'stop-desc';
+    desc.textContent = stop.desc;
+    article.appendChild(desc);
+
+    if (stop.surprise) {
+      const hint = document.createElement('div');
+      hint.className = 'surprise-hint';
+      hint.textContent = stop.surprise;
+      article.appendChild(hint);
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'btn';
+    copyBtn.innerHTML = '<span class="btn-icon">⊕</span><span>複製地址</span>';
+    copyBtn.addEventListener('click', () => copyText(stop.address, '地址'));
+    actions.appendChild(copyBtn);
+
+    const mapBtn = document.createElement('button');
+    mapBtn.className = 'btn primary';
+    mapBtn.innerHTML = '<span class="btn-icon">▷</span><span>導航</span>';
+    mapBtn.addEventListener('click', () => openMaps(stop.mapsQuery));
+    actions.appendChild(mapBtn);
+
+    article.appendChild(actions);
+    frag.appendChild(article);
+  });
+
+  container.innerHTML = '';
+  container.appendChild(frag);
+  updateProgress();
+  updateNowCard();
+}
+
+function updateProgress() {
+  const total = STOPS.length;
+  const done = STOPS.filter(s => progress[s.id]).length;
+  const pct = total > 0 ? (done / total) * 100 : 0;
+  const fill = document.getElementById('progressFill');
+  const text = document.getElementById('progressText');
+  if (fill) fill.style.width = pct + '%';
+  if (text) text.textContent = done + ' / ' + total;
+}
+
+function toggleComplete(id) {
+  progress[id] = !progress[id];
+  if (!progress[id]) delete progress[id];
+  saveProgress(progress);
+  const stop = document.querySelector('.stop[data-id="' + id + '"]');
+  if (stop) {
+    stop.classList.toggle('completed', !!progress[id]);
+  }
+  updateProgress();
+  updateNowCard();
+}
+
+function timeToMinutes(timeStr) {
+  const parts = timeStr.split(':').map(Number);
+  return parts[0] * 60 + parts[1];
+}
+
+function updateNowCard() {
+  const contentEl = document.getElementById('nowContent');
+  const timeEl = document.getElementById('nowTime');
+  if (!contentEl || !timeEl) return;
+
+  const now = new Date();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+  const todayStr = now.getFullYear() + '-' +
+    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+    String(now.getDate()).padStart(2, '0');
+
+  const isTargetDay = todayStr === '2026-05-29';
+
+  if (!isTargetDay) {
+    const target = new Date('2026-05-29T09:00:00+09:00');
+    const diff = target - now;
+    if (diff > 0) {
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      contentEl.textContent = '準備出發 · 5/29 早上 09:00 從飯店前往京都';
+      timeEl.textContent = '還有 ' + days + ' 天 ' + hours + ' 小時';
+    } else {
+      contentEl.textContent = '行程已結束 · 平安回到大阪 💜';
+      timeEl.textContent = '';
+    }
+    return;
+  }
+
+  let currentStop = null;
+  let nextStop = null;
+
+  for (let i = 0; i < STOPS.length; i++) {
+    const stop = STOPS[i];
+    const startMins = timeToMinutes(stop.time);
+    const endMins = startMins + stop.duration;
+    if (nowMins >= startMins && nowMins < endMins) {
+      currentStop = stop;
+      nextStop = STOPS[i + 1] || null;
+      break;
+    }
+    if (nowMins < startMins) {
+      nextStop = stop;
+      break;
+    }
+  }
+
+  if (currentStop) {
+    contentEl.innerHTML = '現在：<strong>' + currentStop.title + '</strong>';
+    const endMins = timeToMinutes(currentStop.time) + currentStop.duration;
+    const endH = Math.floor(endMins / 60);
+    const endM = endMins % 60;
+    const endStr = String(endH).padStart(2, '0') + ':' + String(endM).padStart(2, '0');
+    const nextInfo = nextStop ? '　·　下一站 ' + nextStop.time + ' ' + nextStop.title : '';
+    timeEl.textContent = '預計到 ' + endStr + nextInfo;
+    document.querySelectorAll('.stop').forEach(el => el.classList.remove('now'));
+    const targetEl = document.querySelector('.stop[data-id="' + currentStop.id + '"]');
+    if (targetEl) targetEl.classList.add('now');
+  } else if (nextStop) {
+    contentEl.innerHTML = '即將前往：<strong>' + nextStop.title + '</strong>';
+    timeEl.textContent = nextStop.time + ' 出發';
+    document.querySelectorAll('.stop').forEach(el => el.classList.remove('now'));
+    const targetEl = document.querySelector('.stop[data-id="' + nextStop.id + '"]');
+    if (targetEl) targetEl.classList.add('now');
+  } else {
+    contentEl.textContent = '行程結束 · 回飯店 💜';
+    timeEl.textContent = '辛苦了';
+  }
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (confirm('要重設所有打勾嗎？')) {
+    progress = {};
+    saveProgress(progress);
+    renderTimeline();
+    showToast('已重設');
+  }
+});
+
+function init() {
+  try {
+    renderTimeline();
+    setInterval(updateNowCard, 60000);
+  } catch (e) {
+    document.getElementById('timeline').innerHTML =
+      '<p style="text-align:center;padding:20px;color:#999;">載入失敗、請重新整理</p>';
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+
+</body>
+</html>
