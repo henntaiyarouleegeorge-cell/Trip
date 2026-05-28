@@ -6,50 +6,71 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#2A1840">
-<title>大阪散策手帳 ｜ 5.27-5.30</title>
+<title>Trip Planner ｜ 旅遊規劃手帳</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light only;--bg-base:#F5EFF8;--bg-paper:#FDFAFF;--ink:#2A1840;--ink-soft:#4A3F60;--ink-mute:#7C658E;--line:#C9B8D5;--line-soft:#E5D9EC;--accent:#8B6FAB;--accent-soft:#B89FCB;--accent-deep:#5C3D7A;--gold:#B8956A;--sakura:#E8B5C2;--red-seal:#B85C5C;--serif-jp:'Shippori Mincho',serif;--serif-en:'Cormorant Garamond',serif;--body:'Noto Sans TC',sans-serif}
+:root{color-scheme:light only;--bg-base:#F5EFF8;--bg-paper:#FDFAFF;--ink:#2A1840;--ink-soft:#4A3F60;--ink-mute:#7C658E;--line:#C9B8D5;--line-soft:#E5D9EC;--accent:#8B6FAB;--accent-soft:#B89FCB;--accent-deep:#5C3D7A;--gold:#B8956A;--sakura:#E8B5C2;--red-seal:#B85C5C;--green:#8FA882;--serif-jp:'Shippori Mincho',serif;--serif-en:'Cormorant Garamond',serif;--body:'Noto Sans TC',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{font-family:var(--body);background:var(--bg-base);color:var(--ink);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;padding-bottom:120px;overscroll-behavior-y:none}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 15% 20%,rgba(184,159,203,0.08) 0%,transparent 40%),radial-gradient(circle at 85% 80%,rgba(232,181,194,0.06) 0%,transparent 40%),repeating-linear-gradient(0deg,transparent 0,transparent 31px,rgba(124,101,142,0.04) 31px,rgba(124,101,142,0.04) 32px);pointer-events:none;z-index:0}
 .container{max-width:540px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
-.header{padding:32px 0 20px;text-align:center;border-bottom:1px solid var(--line-soft);margin-bottom:16px;position:relative}
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 0 8px;gap:8px}
+.trip-selector{flex:1;display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:10px;cursor:pointer;-webkit-appearance:none;appearance:none;font-family:var(--body);font-size:14px;color:var(--ink);text-align:left;font-weight:500}
+.trip-selector:active{background:var(--line-soft)}
+.trip-cover{font-size:18px;flex-shrink:0}
+.trip-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.trip-chevron{color:var(--ink-mute);font-size:12px;flex-shrink:0}
+.top-btn{width:42px;height:42px;border:1px solid var(--line-soft);border-radius:10px;background:var(--bg-paper);font-size:16px;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none;flex-shrink:0}
+.top-btn:active{background:var(--line-soft)}
+.header{padding:20px 0 18px;text-align:center;border-bottom:1px solid var(--line-soft);margin-bottom:14px;position:relative}
 .header::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:40px;height:3px;background:var(--accent);border-radius:2px}
-.date-stamp{display:inline-flex;gap:8px;padding:5px 12px;border:1px solid var(--red-seal);border-radius:4px;color:var(--red-seal);font-family:var(--serif-en);font-style:italic;font-size:11px;letter-spacing:3px;margin-bottom:12px;background:rgba(184,92,92,0.04)}
-.title-jp{font-family:var(--serif-jp);font-size:28px;font-weight:700;color:var(--ink);letter-spacing:6px;margin-bottom:4px;line-height:1.2}
-.title-en{font-family:var(--serif-en);font-style:italic;font-size:12px;color:var(--ink-mute);letter-spacing:4px;text-transform:uppercase}
-.title-meta{font-family:var(--serif-jp);font-size:13px;color:var(--ink-soft);letter-spacing:5px;margin-top:10px}
-.day-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:20px;padding:4px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:12px}
-.day-tab{padding:9px 4px;background:transparent;border:none;border-radius:8px;cursor:pointer;font-family:var(--body);font-size:11px;font-weight:500;color:var(--ink-mute);letter-spacing:0.5px;transition:all 0.2s ease;text-align:center;-webkit-appearance:none;appearance:none;line-height:1.3}
+.date-stamp{display:inline-flex;gap:8px;padding:5px 12px;border:1px solid var(--red-seal);border-radius:4px;color:var(--red-seal);font-family:var(--serif-en);font-style:italic;font-size:11px;letter-spacing:3px;margin-bottom:10px;background:rgba(184,92,92,0.04)}
+.title-jp{font-family:var(--serif-jp);font-size:24px;font-weight:700;color:var(--ink);letter-spacing:4px;margin-bottom:4px;line-height:1.2}
+.title-en{font-family:var(--serif-en);font-style:italic;font-size:12px;color:var(--ink-mute);letter-spacing:3px;text-transform:uppercase}
+.day-tabs{display:flex;gap:6px;margin-bottom:18px;padding:4px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{padding:9px 12px;background:transparent;border:none;border-radius:8px;cursor:pointer;font-family:var(--body);font-size:11px;font-weight:500;color:var(--ink-mute);letter-spacing:0.5px;transition:all 0.2s ease;text-align:center;-webkit-appearance:none;appearance:none;line-height:1.3;flex-shrink:0;min-width:60px}
 .day-tab:active{background:rgba(184,159,203,0.15)}
 .day-tab.active{background:var(--ink);color:white}
-.day-tab-date{display:block;font-family:var(--serif-en);font-size:14px;font-weight:500;margin-bottom:1px}
+.day-tab-date{display:block;font-family:var(--serif-en);font-size:13px;font-weight:500;margin-bottom:1px}
 .day-tab-label{display:block;font-size:9px;opacity:0.85;letter-spacing:1px}
-.now-card{background:linear-gradient(135deg,#FFF8FA 0%,#F8F4FF 100%);border:1px solid var(--accent-soft);border-radius:12px;padding:14px 16px;margin-bottom:18px;position:relative;overflow:hidden}
+.day-tab.add{color:var(--accent);font-size:18px;min-width:40px;padding:9px 8px}
+.now-card{background:linear-gradient(135deg,#FFF8FA 0%,#F8F4FF 100%);border:1px solid var(--accent-soft);border-radius:12px;padding:14px 16px;margin-bottom:16px;position:relative;overflow:hidden}
 .now-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--accent),var(--sakura))}
 .now-label{font-family:var(--serif-en);font-style:italic;font-size:10px;color:var(--accent-deep);letter-spacing:3px;text-transform:uppercase;margin-bottom:3px}
 .now-content{font-size:14px;color:var(--ink);font-weight:500;line-height:1.5}
 .now-time{font-family:var(--serif-en);font-size:12px;color:var(--accent-deep);margin-top:3px}
-.progress-wrap{margin-bottom:22px}
+.progress-wrap{margin-bottom:18px}
 .progress-label{display:flex;justify-content:space-between;font-family:var(--serif-en);font-style:italic;font-size:10px;color:var(--ink-mute);letter-spacing:2px;margin-bottom:6px}
 .progress-bar{height:4px;background:var(--line-soft);border-radius:2px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--sakura));border-radius:2px;width:0%;transition:width 0.6s cubic-bezier(0.4,0,0.2,1)}
 .timeline{position:relative;padding-left:28px}
 .timeline::before{content:'';position:absolute;left:9px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,var(--line) 0%,var(--line) 90%,transparent 100%)}
 .empty-day{text-align:center;padding:40px 20px;color:var(--ink-mute);font-size:13px;font-style:italic}
-.stop{position:relative;margin-bottom:14px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:12px;padding:14px;transition:all 0.3s ease}
+.stop{position:relative;margin-bottom:12px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:12px;padding:14px;padding-left:42px;transition:background 0.2s ease}
 .stop.completed{opacity:0.5;background:rgba(245,239,248,0.5)}
 .stop.now{border-color:var(--accent);box-shadow:0 4px 20px rgba(124,101,142,0.2)}
-.stop-dot{position:absolute;left:-24px;top:19px;width:10px;height:10px;background:var(--bg-base);border:2px solid var(--ink-mute);border-radius:50%;z-index:2;transition:all 0.3s ease}
+.stop.sortable-ghost{opacity:0.3}
+.stop.sortable-chosen{box-shadow:0 8px 24px rgba(42,24,64,0.2);z-index:10}
+.stop-handle{position:absolute;left:6px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;align-items:center;touch-action:none;user-select:none;-webkit-user-select:none}
+.handle-grip{width:24px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--line);font-size:14px;cursor:grab;touch-action:none}
+.handle-grip:active{cursor:grabbing;color:var(--accent)}
+.handle-arrow{width:24px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--ink-mute);font-size:11px;cursor:pointer;border:none;background:transparent;-webkit-appearance:none;appearance:none;border-radius:4px}
+.handle-arrow:active{background:var(--line-soft);color:var(--accent)}
+.handle-arrow:disabled{opacity:0.2}
+.stop.dragging{opacity:0.85;box-shadow:0 12px 32px rgba(42,24,64,0.3);z-index:100;position:relative}
+.stop.drag-over-top{border-top:3px solid var(--accent)}
+.stop.drag-over-bottom{border-bottom:3px solid var(--accent)}
+.stop-dot{position:absolute;left:-25px;top:19px;width:10px;height:10px;background:var(--bg-base);border:2px solid var(--ink-mute);border-radius:50%;z-index:2;transition:all 0.3s ease}
 .stop.completed .stop-dot{background:var(--accent);border-color:var(--accent)}
 .stop.now .stop-dot{background:var(--accent);border-color:var(--accent);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,101,142,0.4)}50%{box-shadow:0 0 0 8px rgba(124,101,142,0)}}
 .stop-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:10px}
-.stop-time{font-family:var(--serif-en);font-size:17px;font-weight:500;color:var(--accent-deep);letter-spacing:1px;flex-shrink:0}
+.stop-time{font-family:var(--serif-en);font-size:17px;font-weight:500;color:var(--accent-deep);letter-spacing:1px;flex-shrink:0;display:flex;align-items:center;gap:6px}
+.stop-time-auto{font-family:var(--body);font-size:9px;color:var(--ink-mute);font-style:italic;letter-spacing:0;background:rgba(184,159,203,0.15);padding:1px 5px;border-radius:3px}
 .stop-check{width:24px;height:24px;border:1.5px solid var(--line);border-radius:50%;background:var(--bg-paper);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;transition:all 0.2s ease;flex-shrink:0;-webkit-appearance:none;appearance:none}
 .stop-check:active{transform:scale(0.92)}
 .stop.completed .stop-check{background:var(--accent);border-color:var(--accent);color:white}
@@ -60,6 +81,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .tag.gold{background:rgba(184,149,106,0.1);color:var(--gold);border-color:rgba(184,149,106,0.3)}
 .tag.red{background:rgba(184,92,92,0.08);color:var(--red-seal);border-color:rgba(184,92,92,0.25)}
 .stop-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.6;margin:6px 0 10px}
+.stop-times{display:flex;gap:10px;font-size:10px;color:var(--ink-mute);margin:6px 0;letter-spacing:0.5px}
+.stop-times span{display:inline-flex;align-items:center;gap:3px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
 .btn{display:flex;align-items:center;justify-content:center;gap:4px;padding:10px 6px;background:var(--bg-base);border:1px solid var(--line-soft);border-radius:8px;font-size:12.5px;color:var(--ink-soft);font-family:var(--body);font-weight:500;cursor:pointer;transition:all 0.15s ease;-webkit-appearance:none;appearance:none}
 .btn:active{transform:scale(0.96);background:var(--line-soft)}
@@ -70,17 +93,18 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .stop-ctrl-btn{display:flex;align-items:center;gap:3px;padding:4px 9px;background:transparent;border:none;border-radius:6px;font-size:11px;color:var(--ink-mute);font-family:var(--body);cursor:pointer;-webkit-appearance:none;appearance:none}
 .stop-ctrl-btn:active{background:var(--line-soft)}
 .stop-ctrl-btn.danger{color:var(--red-seal)}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:white;padding:11px 22px;border-radius:24px;font-size:13px;letter-spacing:1px;box-shadow:0 8px 24px rgba(42,24,64,0.3);opacity:0;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);z-index:2000;pointer-events:none;max-width:90vw;text-align:center}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:white;padding:11px 22px;border-radius:24px;font-size:13px;letter-spacing:1px;box-shadow:0 8px 24px rgba(42,24,64,0.3);opacity:0;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);z-index:5000;pointer-events:none;max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .footer{text-align:center;margin-top:40px;padding:24px 0;border-top:1px dashed var(--line)}
 .footer-jp{font-family:var(--serif-jp);font-size:12px;color:var(--ink-mute);letter-spacing:6px;margin-bottom:4px}
 .footer-en{font-family:var(--serif-en);font-style:italic;font-size:10px;color:var(--ink-mute);letter-spacing:2px}
 .add-stop-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:14px;background:var(--bg-paper);border:2px dashed var(--accent-soft);border-radius:12px;font-family:var(--body);font-size:13px;color:var(--accent-deep);font-weight:500;cursor:pointer;letter-spacing:1px;-webkit-appearance:none;appearance:none}
 .add-stop-btn:active{background:rgba(184,159,203,0.1)}
-.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(253,250,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line-soft);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));display:flex;gap:8px;z-index:100;justify-content:center}
-.tool-btn{display:flex;align-items:center;gap:4px;padding:9px 13px;background:transparent;border:1px solid var(--line-soft);border-radius:8px;font-family:var(--body);font-size:12px;color:var(--ink-soft);cursor:pointer;-webkit-appearance:none;appearance:none}
+.toolbar{position:fixed;bottom:0;left:0;right:0;background:rgba(253,250,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line-soft);padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));display:flex;gap:6px;z-index:100;justify-content:center;flex-wrap:wrap}
+.tool-btn{display:flex;align-items:center;gap:4px;padding:9px 11px;background:transparent;border:1px solid var(--line-soft);border-radius:8px;font-family:var(--body);font-size:12px;color:var(--ink-soft);cursor:pointer;-webkit-appearance:none;appearance:none;white-space:nowrap}
 .tool-btn:active{background:var(--line-soft);transform:scale(0.96)}
 .tool-btn.danger{color:var(--red-seal);border-color:rgba(184,92,92,0.3)}
+.tool-btn.accent{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:white;border:none}
 .modal-backdrop{position:fixed;inset:0;background:rgba(42,24,64,0.5);z-index:3000;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity 0.3s ease}
 .modal-backdrop.show{display:flex;opacity:1}
 .modal{background:var(--bg-base);width:100%;max-width:540px;max-height:90vh;border-radius:20px 20px 0 0;padding:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));overflow-y:auto;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);-webkit-overflow-scrolling:touch}
@@ -89,32 +113,63 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 .modal-title{font-family:var(--serif-jp);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:2px;margin-bottom:16px;text-align:center}
 .field{margin-bottom:12px}
 .field-label{display:block;font-size:11px;color:var(--ink-mute);font-weight:500;letter-spacing:1px;margin-bottom:5px;text-transform:uppercase;font-family:var(--serif-en)}
-.field input,.field textarea{width:100%;padding:10px 12px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:8px;font-family:var(--body);font-size:14px;color:var(--ink);-webkit-appearance:none;appearance:none}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
-.field textarea{resize:vertical;min-height:60px;line-height:1.5}
+.field input,.field textarea,.field select{width:100%;padding:10px 12px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:8px;font-family:var(--body);font-size:14px;color:var(--ink);-webkit-appearance:none;appearance:none}
+.field select{background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237C658E'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 8px center;padding-right:32px}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent)}
+.field textarea{resize:vertical;min-height:60px;line-height:1.5;font-family:var(--body)}
 .field-hint{font-size:10px;color:var(--ink-mute);margin-top:3px;font-style:italic}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .modal-actions{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:18px}
 .modal-btn{padding:13px;border-radius:10px;font-family:var(--body);font-size:14px;font-weight:500;cursor:pointer;border:none;letter-spacing:1px;-webkit-appearance:none;appearance:none}
 .modal-btn:active{transform:scale(0.96)}
 .modal-btn.cancel{background:var(--bg-paper);color:var(--ink-soft);border:1px solid var(--line-soft)}
 .modal-btn.save{background:var(--ink);color:white}
-@media (max-width:380px){.title-jp{font-size:24px;letter-spacing:4px}.day-tab-date{font-size:13px}}
+.modal-btn.full{grid-column:1/-1}
+.trip-list{margin:0 -4px}
+.trip-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:10px;margin-bottom:8px;cursor:pointer;-webkit-appearance:none;appearance:none;width:100%;text-align:left;font-family:var(--body)}
+.trip-card:active{background:var(--line-soft)}
+.trip-card.current{border-color:var(--accent);background:rgba(184,159,203,0.08)}
+.trip-card-cover{font-size:24px;flex-shrink:0}
+.trip-card-info{flex:1;overflow:hidden}
+.trip-card-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:2px;letter-spacing:0.5px}
+.trip-card-meta{font-size:11px;color:var(--ink-mute);font-family:var(--serif-en);font-style:italic}
+.trip-card-actions{display:flex;gap:4px;flex-shrink:0}
+.trip-card-action{width:28px;height:28px;border:none;background:transparent;border-radius:6px;color:var(--ink-mute);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none}
+.trip-card-action:active{background:var(--line-soft)}
+.trip-card-action.danger:active{color:var(--red-seal)}
+.ai-prompt-box{background:var(--bg-paper);border:1px solid var(--line-soft);border-radius:10px;padding:12px;margin:12px 0;font-family:"SF Mono",Menlo,monospace;font-size:11px;line-height:1.5;color:var(--ink-soft);max-height:280px;overflow-y:auto;-webkit-overflow-scrolling:touch;white-space:pre-wrap;word-break:break-all}
+.ai-step{padding:10px 12px;background:rgba(184,159,203,0.08);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;margin-bottom:8px;font-size:12px;color:var(--ink-soft);line-height:1.5}
+.ai-step strong{color:var(--ink);font-weight:600}
+.ai-result-area{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+@media (max-width:380px){.title-jp{font-size:20px;letter-spacing:3px}.day-tab-date{font-size:12px}}
 </style>
 </head>
 <body>
 <div class="container">
+
+<div class="top-bar">
+<button class="trip-selector" id="tripSelector">
+<span class="trip-cover" id="tripCover">🌸</span>
+<span class="trip-name" id="tripName">大阪京都 2026</span>
+<span class="trip-chevron">▼</span>
+</button>
+<button class="top-btn" id="aiBtn" title="AI 助理">🤖</button>
+</div>
+
 <header class="header">
-<div class="date-stamp">— OSAKA × KYOTO 4D3N —</div>
-<h1 class="title-jp">大阪散策</h1>
-<div class="title-en">Osaka × Kyoto Wandering</div>
-<div class="title-meta">L I U  ×  L I N</div>
+<div class="date-stamp" id="dateStamp">— 4D3N · TRIP PLANNER —</div>
+<h1 class="title-jp" id="tripTitle">大阪散策</h1>
+<div class="title-en" id="tripTitleEn">Osaka × Kyoto Wandering</div>
 </header>
+
 <div class="day-tabs" id="dayTabs"></div>
+
 <div class="now-card" id="nowCard">
 <div class="now-label">Right Now</div>
 <div class="now-content" id="nowContent">準備出發</div>
 <div class="now-time" id="nowTime">—</div>
 </div>
+
 <div class="progress-wrap">
 <div class="progress-label">
 <span id="progressDay">DAY 1 PROGRESS</span>
@@ -124,131 +179,1326 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle
 <div class="progress-fill" id="progressFill"></div>
 </div>
 </div>
+
 <div class="timeline" id="timeline"></div>
+
 <button class="add-stop-btn" id="addStopBtn">＋ 新增景點</button>
+
 <footer class="footer">
-<div class="footer-jp">大 阪 散 策 手 帳</div>
-<div class="footer-en">5.27 — 5.30 . 2026 · For my dearest</div>
+<div class="footer-jp" id="footerJp">旅 遊 散 策 手 帳</div>
+<div class="footer-en">Trip Planner · For my dearest</div>
 </footer>
+
 </div>
+
 <div class="toolbar">
+<button class="tool-btn accent" id="aiToolBtn">🤖 AI 助理</button>
 <button class="tool-btn" id="exportBtn">⬇ 匯出</button>
 <button class="tool-btn" id="importBtn">⬆ 匯入</button>
 <button class="tool-btn danger" id="resetBtn">↺ 重設</button>
 </div>
+
 <div class="toast" id="toast"></div>
-<div class="modal-backdrop" id="modalBackdrop">
+
+<!-- 編輯景點 Modal -->
+<div class="modal-backdrop" id="stopModal">
 <div class="modal">
 <div class="modal-handle"></div>
-<h2 class="modal-title" id="modalTitle">新增景點</h2>
-<div class="field"><label class="field-label">Time · 時間</label><input type="text" id="fTime" placeholder="例如：14:30"><div class="field-hint">24 小時制、格式 HH:MM</div></div>
+<h2 class="modal-title" id="stopModalTitle">新增景點</h2>
+<div class="field"><label class="field-label">Time · 時間</label><input type="text" id="fTime" placeholder="例如：14:30"><div class="field-hint">24 小時制、留空會自動推算</div></div>
 <div class="field"><label class="field-label">Title · 名稱</label><input type="text" id="fTitle" placeholder="例如：清水寺"></div>
-<div class="field"><label class="field-label">Subtitle · 英文小標題</label><input type="text" id="fTitleSub" placeholder="例如：Kiyomizu-dera Temple"></div>
-<div class="field"><label class="field-label">Description · 描述</label><textarea id="fDesc" placeholder="這個景點的注意事項、特色..."></textarea></div>
-<div class="field"><label class="field-label">Address · 地址（複製用）</label><input type="text" id="fAddress" placeholder="例如：〒605-0862..."><div class="field-hint">含郵遞區號、計程車 App 用</div></div>
-<div class="field"><label class="field-label">Maps Query · 導航搜尋字</label><input type="text" id="fMapsQuery" placeholder="例如：清水寺"></div>
-<div class="field"><label class="field-label">Tags · 標籤（逗號分隔）</label><input type="text" id="fTags" placeholder="例如：神社, 世界遺產"></div>
+<div class="field"><label class="field-label">Subtitle · 英文小標</label><input type="text" id="fTitleSub" placeholder="例如：Kiyomizu-dera"></div>
+<div class="field"><label class="field-label">Description · 描述</label><textarea id="fDesc" placeholder="特色、注意事項..."></textarea></div>
+<div class="field"><label class="field-label">Address · 地址（複製用）</label><input type="text" id="fAddress" placeholder="〒605-0862 京都府..."><div class="field-hint">含郵遞區號、計程車 App 用</div></div>
+<div class="field"><label class="field-label">Maps Query · 導航搜尋字</label><input type="text" id="fMapsQuery" placeholder="清水寺"></div>
+<div class="field"><label class="field-label">Tags · 標籤（逗號分隔）</label><input type="text" id="fTags" placeholder="神社, 世界遺產"></div>
+<div class="field-row">
+<div class="field"><label class="field-label">停留（分鐘）</label><input type="number" id="fDuration" placeholder="60" min="0"></div>
+<div class="field"><label class="field-label">到下一站交通（分鐘）</label><input type="number" id="fTransit" placeholder="30" min="0"></div>
+</div>
 <div class="modal-actions">
-<button class="modal-btn cancel" id="modalCancel">取消</button>
-<button class="modal-btn save" id="modalSave">儲存</button>
+<button class="modal-btn cancel" id="stopModalCancel">取消</button>
+<button class="modal-btn save" id="stopModalSave">儲存</button>
 </div>
 </div>
 </div>
+
+<!-- Trip 選擇 Modal -->
+<div class="modal-backdrop" id="tripModal">
+<div class="modal">
+<div class="modal-handle"></div>
+<h2 class="modal-title">我的行程</h2>
+<div class="trip-list" id="tripList"></div>
+<div class="modal-actions">
+<button class="modal-btn cancel" id="tripModalCancel">關閉</button>
+<button class="modal-btn save" id="newTripBtn">＋ 新增行程</button>
+</div>
+</div>
+</div>
+
+<!-- Trip 編輯 Modal -->
+<div class="modal-backdrop" id="tripEditModal">
+<div class="modal">
+<div class="modal-handle"></div>
+<h2 class="modal-title" id="tripEditTitle">行程設定</h2>
+<div class="field"><label class="field-label">Cover · 封面 Emoji</label><input type="text" id="tripCoverIn" placeholder="🌸" maxlength="4"></div>
+<div class="field"><label class="field-label">Trip Name · 行程名稱</label><input type="text" id="tripNameIn" placeholder="大阪京都 2026"></div>
+<div class="field"><label class="field-label">Start Date · 開始日期</label><input type="date" id="tripStartIn"></div>
+<div class="field"><label class="field-label">Days · 天數</label><input type="number" id="tripDaysIn" min="1" max="30" value="4"></div>
+<div class="modal-actions">
+<button class="modal-btn cancel" id="tripEditCancel">取消</button>
+<button class="modal-btn save" id="tripEditSave">儲存</button>
+</div>
+</div>
+</div>
+
+<!-- AI 助理 Modal -->
+<div class="modal-backdrop" id="aiModal">
+<div class="modal">
+<div class="modal-handle"></div>
+<h2 class="modal-title">🤖 AI 助理</h2>
+<div class="ai-step"><strong>Step 1.</strong> 告訴我你想做什麼</div>
+<div class="field"><textarea id="aiInput" placeholder="例如：&#10;・幫我規劃明天下午的清水寺周邊行程&#10;・推薦京都 3 個素食店&#10;・把現在的景點時間整理得更順" style="min-height:80px"></textarea></div>
+<div class="ai-step"><strong>Step 2.</strong> 按下方按鈕產生 Prompt</div>
+<button class="modal-btn save full" id="aiGenBtn">產生 Prompt</button>
+<div class="ai-result-area" id="aiResult" style="display:none">
+<div class="ai-step"><strong>Step 3.</strong> 複製這段 Prompt、貼到 Claude App、把 Claude 給的 JSON 貼回下方</div>
+<div class="ai-prompt-box" id="aiPromptBox"></div>
+<button class="modal-btn save full" id="aiCopyBtn" style="margin-bottom:12px">📋 複製 Prompt</button>
+<div class="ai-step"><strong>Step 4.</strong> 把 Claude 給你的 JSON 貼到下方</div>
+<div class="field"><textarea id="aiJsonInput" placeholder='[{"time":"14:00","title":"清水寺",...}]' style="min-height:120px;font-family:Menlo,monospace;font-size:12px"></textarea></div>
+<div class="modal-actions">
+<button class="modal-btn cancel" id="aiModalCancel">取消</button>
+<button class="modal-btn save" id="aiApplyBtn">套用</button>
+</div>
+</div>
+<div class="modal-actions" id="aiInitialActions">
+<button class="modal-btn cancel full" id="aiCancelBtn">取消</button>
+</div>
+</div>
+</div>
+
 <script>
 'use strict';
-const DEFAULT_TRIPS={day1:{date:'2026-05-27',label:'5/27 抵達',stops:[{id:'d1-01',time:'06:00',title:'桃園機場',titleSub:'TPE Airport',desc:'台灣大車隊計程車從新店送到 T1。06:00 出發、約 50 分鐘。',tags:['交通'],address:'桃園市大園區航站南路 9 號',mapsQuery:'桃園機場第一航廈',duration:60},{id:'d1-02',time:'11:05',title:'CX564 起飛',titleSub:'Cathay Pacific',desc:'TPE → KIX、3.5 小時。VOML 機上素餐已預訂。',tags:['航班'],address:'',mapsQuery:'',duration:225},{id:'d1-03',time:'14:50',title:'抵達 KIX',titleSub:'Kansai Airport',desc:'入境審查 → 領行李 → 海關（VJW QR Code）→ 出關。',tags:['抵達'],address:'〒549-0001 大阪府泉佐野市泉州空港北1',mapsQuery:'関西国際空港 第1ターミナル',duration:60},{id:'d1-04',time:'16:00',title:'利木津巴士',titleSub:'Limousine Bus',desc:'10 號乘車處（10 番のりば）、目的地大阪城・日本橋 DOTON PLAZA。單程 ¥1,800/人。',tags:['交通','10 番のりば'],address:'関西国際空港 第1ターミナル 1F',mapsQuery:'関西国際空港 リムジンバス',duration:54},{id:'d1-05',time:'17:10',title:'Check-in 飯店',titleSub:'Apartment Hotel 11',desc:'DOTON PLAZA 下車後走 8 分鐘到飯店。無人飯店、密碼門禁。',tags:['飯店'],address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6',mapsQuery:'Apartment Hotel 11 Nippombashi',duration:50},{id:'d1-06',time:'18:00',title:'OKO 大阪燒',titleSub:'Vegan Okonomiyaki',desc:'東心齋橋、長堀橋站 7 號出口走 2 分鐘。素食大阪燒 + 章魚燒、點餐備註無五辛。',tags:['晚餐','素食'],address:'〒542-0083 大阪府大阪市中央区東心斎橋1-13-9 第五天偉ビル 2F',mapsQuery:'OKO 東心斎橋',duration:90},{id:'d1-07',time:'20:00',title:'心齋橋夜遊',titleSub:'Shinsaibashi Night',desc:'道頓堀、心齋橋筋商店街、戎橋拍照。',tags:['夜遊'],address:'〒542-0085 大阪府大阪市中央区心斎橋筋',mapsQuery:'心斎橋筋商店街',duration:120}]},day2:{date:'2026-05-28',label:'5/28 大阪',stops:[{id:'d2-01',time:'09:00',title:'飯店出發',titleSub:'Departure',desc:'早餐 → 整裝（折疊購物袋準備）→ 出發梅田。',tags:['出發'],address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6',mapsQuery:'Apartment Hotel 11 Nippombashi',duration:60},{id:'d2-02',time:'10:00',title:'梅田 4 大百貨',titleSub:'Umeda Shopping',desc:'阪急 → 阪神 → Lucua → 大丸。地下街連通、雨天無壓力。',tags:['購物','百貨'],address:'〒530-0001 大阪府大阪市北区梅田',mapsQuery:'阪急うめだ本店',duration:150},{id:'d2-03',time:'12:30',title:'Paprika 食堂 Vegan',titleSub:'Vegan Lunch',desc:'心齋橋走 5 分鐘。100% 植物性、可配合無五辛（官方確認）。建議訂位。',tags:['午餐','素食'],address:'〒550-0013 大阪府大阪市西区新町1-9-9 アリビオ新町 1F',mapsQuery:'パプリカ食堂 Vegan',duration:90},{id:'d2-04',time:'14:00',title:'心齋橋筋',titleSub:'Shinsaibashi-suji',desc:'Uniqlo、GU、Apple Store、運動品牌。有頂棚不怕雨。',tags:['購物'],address:'〒542-0085 大阪府大阪市中央区心斎橋筋',mapsQuery:'心斎橋筋商店街',duration:90},{id:'d2-05',time:'15:30',title:'心齋橋 PARCO',titleSub:'Chiikawa Land',desc:'8F ちいかわらんど（常設）、5F ナガノマーケット、B2F ちいかわラーメン豚。',tags:['購物','吉伊卡哇'],address:'〒542-0085 大阪府大阪市中央区心斎橋筋1-8-3',mapsQuery:'心斎橋 PARCO',duration:60},{id:'d2-06',time:'16:30',title:'堀江 · 美國村',titleSub:'Horie & America-mura',desc:'獨立品牌、設計小店、復古中古。文青區域。',tags:['購物','文青'],address:'〒542-0086 大阪府大阪市中央区西心斎橋',mapsQuery:'堀江 大阪',duration:90},{id:'d2-07',time:'18:00',title:'Vegan & GF Osaka',titleSub:'Vegan Dinner',desc:'梅田駅前第 4 ビル B1F-14。100% Vegan + Gluten Free、官方明確無五辛 ⭐ 素食版大阪燒、章魚燒。',tags:['晚餐','無五辛'],address:'〒530-0001 大阪府大阪市北区梅田1-11-4 大阪駅前第4ビル B1F-14',mapsQuery:'Vegan Gluten Free Osaka 梅田',duration:120},{id:'d2-08',time:'20:00',title:'道頓堀夜景',titleSub:'Dotonbori Night',desc:'霓虹、運河、戎橋必拍。法善寺横丁古巷。',tags:['夜遊'],address:'〒542-0071 大阪府大阪市中央区道頓堀',mapsQuery:'道頓堀 戎橋',duration:120},{id:'d2-09',time:'22:00',title:'梅田藥妝採購',titleSub:'Drugstore Shopping',desc:'マツモトキヨシ 梅田阪急三番街店（24h）。退稅、補貨。',tags:['購物','藥妝'],address:'〒530-0012 大阪府大阪市北区芝田1-1-3',mapsQuery:'マツモトキヨシ 梅田阪急三番街店',duration:90}]},day3:{date:'2026-05-29',label:'5/29 京都',stops:[{id:'d3-01',time:'09:00',title:'飯店出發',titleSub:'Departure to Kyoto',desc:'近鐵日本橋 → 大阪難波 → JR 大阪 → JR 京都（約 1 小時）。',tags:['交通'],address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6',mapsQuery:'Apartment Hotel 11 Nippombashi',duration:60},{id:'d3-02',time:'10:30',title:'おきもの屋 清水店',titleSub:'Kimono Rental',desc:'預約 10:00 場。全妝 + 著裝 + 髮型約 60 分鐘。',tags:['和服','預約'],address:'〒605-0862 京都府京都市東山区清水4丁目188 清水ビル 2F',mapsQuery:'おきもの屋 京都清水店',duration:60},{id:'d3-03',time:'11:30',title:'八坂塔・二三年坂',titleSub:'Yasaka Pagoda',desc:'八坂塔 → 二寧坂 → 産寧坂 → 清水寺前。1 小時專業外拍。',tags:['外拍','世界遺產'],address:'〒605-0827 京都府京都市東山区八坂上町388',mapsQuery:'八坂の塔 法観寺',duration:60},{id:'d3-04',time:'12:30',title:'還和服 · 計程車',titleSub:'Return & Taxi',desc:'回 Okimono 屋還和服。叫計程車 → 下鴨神社（約 25 分鐘 ¥2,500）。',tags:['交通'],address:'〒605-0862 京都府京都市東山区清水4丁目188',mapsQuery:'おきもの屋 京都清水店',duration:60},{id:'d3-05',time:'13:30',title:'下鴨神社',titleSub:'Shimogamo Shrine',desc:'世界遺產、京都最古老神社之一。先參拜本殿、走過糺の森。',tags:['神社','世界遺產'],address:'〒606-0807 京都府京都市左京区下鴨泉川町59',mapsQuery:'下鴨神社',duration:30},{id:'d3-06',time:'13:45',title:'相生社',titleSub:'Aioi-no-Yashiro',desc:'下鴨神社境內、戀愛結緣神社。日本罕見的戒指型御守 💍',tags:['神社','御守'],address:'〒606-0807 京都府京都市左京区下鴨泉川町59',mapsQuery:'下鴨神社 相生社',duration:30},{id:'d3-07',time:'14:30',title:'加茂みたらし茶屋',titleSub:'Kamo Mitarashi Chaya',desc:'下鴨神社旁百年茶屋、御手洗團子發源地。輕食、抹茶。',tags:['午餐','和菓子'],address:'〒606-0808 京都府京都市左京区下鴨松ノ木町53',mapsQuery:'加茂みたらし茶屋',duration:60},{id:'d3-08',time:'16:00',title:'伏見稻荷大社',titleSub:'Fushimi Inari',desc:'京阪電車 出町柳 → 伏見稻荷（25 分 ¥280）。千本鳥居。',tags:['神社','千本鳥居'],address:'〒612-0882 京都府京都市伏見区深草薮之内町68',mapsQuery:'伏見稲荷大社',duration:90},{id:'d3-09',time:'18:00',title:'AIN SOPH. Journey',titleSub:'Vegan Dinner',desc:'100% 純素 + 五葷抜き對應 ⭐ 河原町商圈、阪急京都河原町站徒步 3 分。',tags:['晚餐','素食','無五辛'],address:'〒604-8043 京都府京都市中京区裏寺町597-1',mapsQuery:'AIN SOPH Journey 京都',duration:120}]},day4:{date:'2026-05-30',label:'5/30 返程',stops:[{id:'d4-01',time:'09:00',title:'退房 · 寄行李',titleSub:'Check-out',desc:'飯店退房、行李寄存。',tags:['退房'],address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6',mapsQuery:'Apartment Hotel 11 Nippombashi',duration:60},{id:'d4-02',time:'10:00',title:'最後巡禮',titleSub:'Last Shopping',desc:'心齋橋 / 道頓堀 / Don Quijote 補貨。',tags:['購物'],address:'〒542-0071 大阪府大阪市中央区道頓堀1-7-13',mapsQuery:'Don Quijote 道頓堀店',duration:120},{id:'d4-03',time:'12:00',title:'取行李 · 走去 DOTON PLAZA',titleSub:'DOTON PLAZA',desc:'從飯店走 8 分鐘到 DOTON PLAZA。售票機買回程票 ¥1,800/人 × 2。',tags:['交通'],address:'〒556-0011 大阪府大阪市浪速区難波中2-10-70',mapsQuery:'DOTON PLAZA 大阪',duration:50},{id:'d4-04',time:'13:00',title:'利木津巴士回程',titleSub:'To KIX',desc:'DOTON PLAZA → 關西機場。約 60 分鐘。',tags:['交通'],address:'DOTON PLAZA 大阪 1F',mapsQuery:'DOTON PLAZA 大阪',duration:60},{id:'d4-05',time:'14:00',title:'抵達 KIX',titleSub:'Kansai Airport',desc:'Check-in、托運行李、過海關、退稅。',tags:['機場'],address:'〒549-0001 大阪府泉佐野市泉州空港北1',mapsQuery:'関西国際空港 第1ターミナル',duration:135},{id:'d4-06',time:'16:15',title:'CX565 起飛',titleSub:'Cathay Pacific',desc:'KIX → TPE、2 小時。VOML 機上素餐。',tags:['航班'],address:'',mapsQuery:'',duration:120},{id:'d4-07',time:'18:15',title:'抵達桃機',titleSub:'TPE Arrival',desc:'入境、領行李。',tags:['抵達'],address:'桃園市大園區航站南路 9 號',mapsQuery:'桃園機場第一航廈',duration:45},{id:'d4-08',time:'19:00',title:'回家',titleSub:'Home Sweet Home',desc:'台灣大車隊計程車從 T1 17 號柱接送回新店。',tags:['交通'],address:'新北市新店區北宜路二段 339 巷 10 號',mapsQuery:'新北市新店區北宜路二段339巷',duration:60}]}};
-const STORAGE_TRIPS='osaka_trip_data_v1';
-const STORAGE_PROGRESS='osaka_trip_progress_v1';
-const STORAGE_CURRENT_DAY='osaka_trip_current_day_v1';
-function loadTrips(){try{const r=localStorage.getItem(STORAGE_TRIPS);if(r){const p=JSON.parse(r);if(p&&typeof p==='object')return p}}catch(e){}return JSON.parse(JSON.stringify(DEFAULT_TRIPS))}
-function saveTrips(){try{localStorage.setItem(STORAGE_TRIPS,JSON.stringify(trips))}catch(e){showToast('儲存失敗')}}
-function loadProgress(){try{const r=localStorage.getItem(STORAGE_PROGRESS);if(!r)return{};const p=JSON.parse(r);return(typeof p==='object'&&p!==null)?p:{}}catch(e){return{}}}
-function saveProgress(){try{localStorage.setItem(STORAGE_PROGRESS,JSON.stringify(progress))}catch(e){}}
-function loadCurrentDay(){try{const d=localStorage.getItem(STORAGE_CURRENT_DAY);return d&&trips[d]?d:'day1'}catch(e){return'day1'}}
-function saveCurrentDay(){try{localStorage.setItem(STORAGE_CURRENT_DAY,currentDay)}catch(e){}}
-let trips=loadTrips();
-let progress=loadProgress();
-let currentDay=loadCurrentDay();
-let editingStop=null;
-let toastTimer=null;
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1800)}
-async function copyText(text,label){if(navigator.clipboard&&navigator.clipboard.writeText){try{await navigator.clipboard.writeText(text);showToast('已複製 '+label);return}catch(e){}}try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';ta.setAttribute('readonly','');document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);const ok=document.execCommand('copy');document.body.removeChild(ta);showToast(ok?'已複製 '+label:'複製失敗')}catch(e){showToast('複製失敗')}}
-function openMaps(query){if(!query){showToast('沒有導航資料');return}const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query);window.open(url,'_blank','noopener,noreferrer')}
-function renderDayTabs(){const c=document.getElementById('dayTabs');if(!c)return;c.innerHTML='';Object.keys(trips).forEach(key=>{const day=trips[key];const btn=document.createElement('button');btn.className='day-tab'+(currentDay===key?' active':'');btn.dataset.day=key;const parts=day.label.split(' ');btn.innerHTML='<span class="day-tab-date">'+parts[0]+'</span><span class="day-tab-label">'+(parts[1]||'')+'</span>';btn.addEventListener('click',()=>switchDay(key));c.appendChild(btn)})}
-function switchDay(key){if(!trips[key])return;currentDay=key;saveCurrentDay();renderDayTabs();renderTimeline()}
-function timeToMinutes(t){if(!t)return 0;const p=t.split(':').map(Number);if(p.length<2||isNaN(p[0])||isNaN(p[1]))return 0;return p[0]*60+p[1]}
-function renderTimeline(){const c=document.getElementById('timeline');if(!c)return;const day=trips[currentDay];if(!day||!day.stops||day.stops.length===0){c.innerHTML='<div class="empty-day">今天還沒有景點<br>點下方「＋ 新增景點」開始吧</div>';updateProgress();updateNowCard();return}
-const sorted=day.stops.slice().sort((a,b)=>timeToMinutes(a.time)-timeToMinutes(b.time));
-const frag=document.createDocumentFragment();
-sorted.forEach(stop=>{const done=!!progress[stop.id];const art=document.createElement('article');art.className='stop'+(done?' completed':'');art.dataset.id=stop.id;
-const dot=document.createElement('div');dot.className='stop-dot';art.appendChild(dot);
-const hdr=document.createElement('div');hdr.className='stop-header';
-const tm=document.createElement('div');tm.className='stop-time';tm.textContent=stop.time||'--:--';hdr.appendChild(tm);
-const chk=document.createElement('button');chk.className='stop-check';chk.innerHTML='✓';chk.addEventListener('click',()=>toggleComplete(stop.id));hdr.appendChild(chk);
-art.appendChild(hdr);
-if(stop.title){const t=document.createElement('h2');t.className='stop-title';t.textContent=stop.title;art.appendChild(t)}
-if(stop.titleSub){const s=document.createElement('div');s.className='stop-title-sub';s.textContent=stop.titleSub;art.appendChild(s)}
-if(stop.tags&&stop.tags.length>0){const m=document.createElement('div');m.className='stop-meta';stop.tags.forEach(tg=>{const sp=document.createElement('span');let cls='tag';if(tg.indexOf('世界遺產')!==-1||tg.indexOf('預約')!==-1)cls+=' gold';else if(tg.indexOf('無五辛')!==-1)cls+=' red';sp.className=cls;sp.textContent=tg;m.appendChild(sp)});art.appendChild(m)}
-if(stop.desc){const d=document.createElement('p');d.className='stop-desc';d.textContent=stop.desc;art.appendChild(d)}
-if(stop.address||stop.mapsQuery){const a=document.createElement('div');a.className='actions';
-const cb=document.createElement('button');cb.className='btn';cb.innerHTML='<span class="btn-icon">⊕</span><span>複製地址</span>';cb.addEventListener('click',()=>{if(stop.address)copyText(stop.address,'地址');else showToast('沒有地址資料')});a.appendChild(cb);
-const mb=document.createElement('button');mb.className='btn primary';mb.innerHTML='<span class="btn-icon">▷</span><span>導航</span>';mb.addEventListener('click',()=>openMaps(stop.mapsQuery));a.appendChild(mb);
-art.appendChild(a)}
-const ctl=document.createElement('div');ctl.className='stop-controls';
-const eb=document.createElement('button');eb.className='stop-ctrl-btn';eb.textContent='✎ 編輯';eb.addEventListener('click',()=>openEditModal(stop.id));ctl.appendChild(eb);
-const db=document.createElement('button');db.className='stop-ctrl-btn danger';db.textContent='✕ 刪除';db.addEventListener('click',()=>deleteStop(stop.id));ctl.appendChild(db);
-art.appendChild(ctl);
-frag.appendChild(art)});
-c.innerHTML='';c.appendChild(frag);updateProgress();updateNowCard()}
-function updateProgress(){const day=trips[currentDay];if(!day)return;const total=day.stops.length;const done=day.stops.filter(s=>progress[s.id]).length;const pct=total>0?(done/total)*100:0;const f=document.getElementById('progressFill');const t=document.getElementById('progressText');const l=document.getElementById('progressDay');if(f)f.style.width=pct+'%';if(t)t.textContent=done+' / '+total;if(l)l.textContent=(day.label||currentDay).toUpperCase()+' PROGRESS'}
-function toggleComplete(id){progress[id]=!progress[id];if(!progress[id])delete progress[id];saveProgress();const el=document.querySelector('.stop[data-id="'+id+'"]');if(el)el.classList.toggle('completed',!!progress[id]);updateProgress();updateNowCard()}
-function updateNowCard(){const cE=document.getElementById('nowContent');const tE=document.getElementById('nowTime');if(!cE||!tE)return;
-const now=new Date();const today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
-let todayKey=null;Object.keys(trips).forEach(k=>{if(trips[k].date===today)todayKey=k});
-const day=trips[currentDay];if(!day)return;
-if(!todayKey){const future=Object.values(trips).filter(d=>d.date>today).sort((a,b)=>a.date.localeCompare(b.date));
-if(future.length>0){const target=new Date(future[0].date+'T09:00:00+09:00');const diff=target-now;const days=Math.floor(diff/86400000);const hours=Math.floor((diff%86400000)/3600000);cE.textContent='準備出發 · '+future[0].label;tE.textContent=days>0?('還有 '+days+' 天 '+hours+' 小時'):('還有 '+hours+' 小時')}
-else{cE.textContent='行程已結束 · 平安回家 💜';tE.textContent=''}
-return}
-if(currentDay!==todayKey){cE.innerHTML='查看：<strong>'+day.label+'</strong>';tE.textContent='今天是 '+trips[todayKey].label;return}
-const nowMins=now.getHours()*60+now.getMinutes();
-const sorted=day.stops.slice().sort((a,b)=>timeToMinutes(a.time)-timeToMinutes(b.time));
-let curr=null;let next=null;
-for(let i=0;i<sorted.length;i++){const s=sorted[i];const start=timeToMinutes(s.time);const end=start+(s.duration||60);if(nowMins>=start&&nowMins<end){curr=s;next=sorted[i+1]||null;break}if(nowMins<start){next=s;break}}
-document.querySelectorAll('.stop').forEach(el=>el.classList.remove('now'));
-if(curr){cE.innerHTML='現在：<strong>'+curr.title+'</strong>';const end=timeToMinutes(curr.time)+(curr.duration||60);const eh=Math.floor(end/60);const em=end%60;const es=String(eh).padStart(2,'0')+':'+String(em).padStart(2,'0');const ni=next?'　·　下一站 '+next.time+' '+next.title:'';tE.textContent='預計到 '+es+ni;const t=document.querySelector('.stop[data-id="'+curr.id+'"]');if(t)t.classList.add('now')}
-else if(next){cE.innerHTML='即將前往：<strong>'+next.title+'</strong>';tE.textContent=next.time+' 出發';const t=document.querySelector('.stop[data-id="'+next.id+'"]');if(t)t.classList.add('now')}
-else{cE.textContent='今日行程結束 · 回飯店 💜';tE.textContent='辛苦了'}}
-function openAddModal(){editingStop=null;document.getElementById('modalTitle').textContent='新增景點';['fTime','fTitle','fTitleSub','fDesc','fAddress','fMapsQuery','fTags'].forEach(id=>document.getElementById(id).value='');showModal()}
-function openEditModal(id){const day=trips[currentDay];if(!day)return;const stop=day.stops.find(s=>s.id===id);if(!stop)return;editingStop={dayKey:currentDay,stopId:id};document.getElementById('modalTitle').textContent='編輯景點';document.getElementById('fTime').value=stop.time||'';document.getElementById('fTitle').value=stop.title||'';document.getElementById('fTitleSub').value=stop.titleSub||'';document.getElementById('fDesc').value=stop.desc||'';document.getElementById('fAddress').value=stop.address||'';document.getElementById('fMapsQuery').value=stop.mapsQuery||'';document.getElementById('fTags').value=(stop.tags||[]).join(', ');showModal()}
-function showModal(){document.getElementById('modalBackdrop').classList.add('show')}
-function hideModal(){document.getElementById('modalBackdrop').classList.remove('show');editingStop=null}
-function validateTimeFormat(t){if(!t)return false;return /^([01]?\d|2[0-3]):[0-5]\d$/.test(t)}
-function saveStop(){const time=document.getElementById('fTime').value.trim();const title=document.getElementById('fTitle').value.trim();
-if(!title){showToast('請填名稱');return}
-if(time&&!validateTimeFormat(time)){showToast('時間格式：HH:MM');return}
-const tagsRaw=document.getElementById('fTags').value.trim();
-const tags=tagsRaw?tagsRaw.split(/[,、,]/).map(t=>t.trim()).filter(Boolean):[];
-const data={time:time||'00:00',title:title,titleSub:document.getElementById('fTitleSub').value.trim(),desc:document.getElementById('fDesc').value.trim(),address:document.getElementById('fAddress').value.trim(),mapsQuery:document.getElementById('fMapsQuery').value.trim(),tags:tags,duration:60};
-if(editingStop){const day=trips[editingStop.dayKey];if(day){const idx=day.stops.findIndex(s=>s.id===editingStop.stopId);if(idx!==-1)Object.assign(day.stops[idx],data)}
-showToast('已更新')}
-else{data.id='u-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);trips[currentDay].stops.push(data);showToast('已新增')}
-saveTrips();hideModal();renderTimeline()}
-function deleteStop(id){if(!confirm('確定要刪除這個景點嗎？'))return;const day=trips[currentDay];if(!day)return;day.stops=day.stops.filter(s=>s.id!==id);if(progress[id]){delete progress[id];saveProgress()}
-saveTrips();renderTimeline();showToast('已刪除')}
-function exportData(){const data={trips:trips,progress:progress,exportedAt:new Date().toISOString()};copyText(JSON.stringify(data,null,2),'完整資料 JSON')}
-function importData(){const txt=prompt('貼上之前匯出的 JSON：');if(!txt)return;try{const data=JSON.parse(txt);if(!data||!data.trips){showToast('資料格式錯誤');return}
-if(!confirm('確定要覆蓋現有資料嗎？'))return;trips=data.trips;progress=data.progress||{};saveTrips();saveProgress();renderDayTabs();renderTimeline();showToast('已匯入')}catch(e){showToast('JSON 格式錯誤')}}
-function resetAll(){if(!confirm('要重設成預設行程嗎？所有自訂景點與打勾會消失。'))return;trips=JSON.parse(JSON.stringify(DEFAULT_TRIPS));progress={};saveTrips();saveProgress();renderDayTabs();renderTimeline();showToast('已重設')}
-document.getElementById('addStopBtn').addEventListener('click',openAddModal);
-document.getElementById('modalCancel').addEventListener('click',hideModal);
-document.getElementById('modalSave').addEventListener('click',saveStop);
-document.getElementById('modalBackdrop').addEventListener('click',(e)=>{if(e.target===e.currentTarget)hideModal()});
-document.getElementById('exportBtn').addEventListener('click',exportData);
-document.getElementById('importBtn').addEventListener('click',importData);
-document.getElementById('resetBtn').addEventListener('click',resetAll);
-function init(){try{renderDayTabs();renderTimeline();setInterval(updateNowCard,60000)}catch(e){console.error('Init failed:',e);document.getElementById('timeline').innerHTML='<p style="text-align:center;padding:20px;color:#999;">載入失敗</p>'}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+
+// ================== 預設行程資料 ==================
+const DEFAULT_OSAKA_STOPS = {
+  d1: [
+    { time:'06:00', title:'桃園機場', titleSub:'TPE Airport', desc:'台灣大車隊計程車從新店送到 T1。06:00 出發、約 50 分鐘。', tags:['交通'], address:'桃園市大園區航站南路 9 號', mapsQuery:'桃園機場第一航廈', duration:60, transitToNext:5 },
+    { time:'11:05', title:'CX564 起飛', titleSub:'Cathay Pacific', desc:'TPE → KIX、3.5 小時。VOML 機上素餐已預訂。', tags:['航班'], address:'', mapsQuery:'', duration:225, transitToNext:60 },
+    { time:'14:50', title:'抵達 KIX', titleSub:'Kansai Airport', desc:'入境審查 → 領行李 → 海關（VJW QR Code）→ 出關。', tags:['抵達'], address:'〒549-0001 大阪府泉佐野市泉州空港北1', mapsQuery:'関西国際空港 第1ターミナル', duration:60, transitToNext:10 },
+    { time:'16:00', title:'利木津巴士', titleSub:'Limousine Bus', desc:'10 號乘車處、目的地 DOTON PLAZA。單程 ¥1,800/人。', tags:['交通','10 番のりば'], address:'関西国際空港 第1ターミナル 1F', mapsQuery:'関西国際空港 リムジンバス', duration:54, transitToNext:16 },
+    { time:'17:10', title:'Check-in 飯店', titleSub:'Apartment Hotel 11', desc:'DOTON PLAZA 下車後走 8 分鐘到飯店。無人飯店、密碼門禁。', tags:['飯店'], address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6', mapsQuery:'Apartment Hotel 11 Nippombashi', duration:50, transitToNext:0 },
+    { time:'18:00', title:'OKO 大阪燒', titleSub:'Vegan Okonomiyaki', desc:'東心齋橋、長堀橋站 7 號出口走 2 分鐘。素食大阪燒、點餐備註無五辛。', tags:['晚餐','素食'], address:'〒542-0083 大阪府大阪市中央区東心斎橋1-13-9 第五天偉ビル 2F', mapsQuery:'OKO 東心斎橋', duration:90, transitToNext:30 },
+    { time:'20:00', title:'心齋橋夜遊', titleSub:'Shinsaibashi Night', desc:'道頓堀、心齋橋筋商店街、戎橋拍照。', tags:['夜遊'], address:'〒542-0085 大阪府大阪市中央区心斎橋筋', mapsQuery:'心斎橋筋商店街', duration:120, transitToNext:0 }
+  ],
+  d2: [
+    { time:'09:00', title:'飯店出發', titleSub:'Departure', desc:'早餐 → 整裝 → 出發梅田。', tags:['出發'], address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6', mapsQuery:'Apartment Hotel 11 Nippombashi', duration:60, transitToNext:0 },
+    { time:'10:00', title:'梅田 4 大百貨', titleSub:'Umeda Shopping', desc:'阪急 → 阪神 → Lucua → 大丸。地下街連通、雨天無壓力。', tags:['購物','百貨'], address:'〒530-0001 大阪府大阪市北区梅田', mapsQuery:'阪急うめだ本店', duration:150, transitToNext:0 },
+    { time:'12:30', title:'Paprika 食堂 Vegan', titleSub:'Vegan Lunch', desc:'心齋橋走 5 分鐘。100% 植物性、可配合無五辛（官方確認）。', tags:['午餐','素食'], address:'〒550-0013 大阪府大阪市西区新町1-9-9 アリビオ新町 1F', mapsQuery:'パプリカ食堂 Vegan', duration:90, transitToNext:0 },
+    { time:'14:00', title:'心齋橋筋', titleSub:'Shinsaibashi-suji', desc:'Uniqlo、GU、Apple Store。有頂棚不怕雨。', tags:['購物'], address:'〒542-0085 大阪府大阪市中央区心斎橋筋', mapsQuery:'心斎橋筋商店街', duration:90, transitToNext:0 },
+    { time:'15:30', title:'心齋橋 PARCO', titleSub:'Chiikawa Land', desc:'8F ちいかわらんど、5F ナガノマーケット、B2F ちいかわラーメン豚。', tags:['購物','吉伊卡哇'], address:'〒542-0085 大阪府大阪市中央区心斎橋筋1-8-3', mapsQuery:'心斎橋 PARCO', duration:60, transitToNext:0 },
+    { time:'16:30', title:'堀江 · 美國村', titleSub:'Horie & America-mura', desc:'獨立品牌、設計小店、復古中古。', tags:['購物','文青'], address:'〒542-0086 大阪府大阪市中央区西心斎橋', mapsQuery:'堀江 大阪', duration:90, transitToNext:0 },
+    { time:'18:00', title:'Vegan & GF Osaka', titleSub:'Vegan Dinner', desc:'梅田駅前第 4 ビル B1F-14。100% Vegan + 官方明確無五辛 ⭐', tags:['晚餐','無五辛'], address:'〒530-0001 大阪府大阪市北区梅田1-11-4 大阪駅前第4ビル B1F-14', mapsQuery:'Vegan Gluten Free Osaka 梅田', duration:120, transitToNext:0 },
+    { time:'20:00', title:'道頓堀夜景', titleSub:'Dotonbori Night', desc:'霓虹、運河、戎橋必拍。', tags:['夜遊'], address:'〒542-0071 大阪府大阪市中央区道頓堀', mapsQuery:'道頓堀 戎橋', duration:120, transitToNext:0 },
+    { time:'22:00', title:'梅田藥妝採購', titleSub:'Drugstore', desc:'マツモトキヨシ 梅田阪急三番街店（24h）。退稅、補貨。', tags:['購物','藥妝'], address:'〒530-0012 大阪府大阪市北区芝田1-1-3', mapsQuery:'マツモトキヨシ 梅田阪急三番街店', duration:90, transitToNext:0 }
+  ],
+  d3: [
+    { time:'09:00', title:'飯店出發', titleSub:'Departure to Kyoto', desc:'近鐵日本橋 → 大阪難波 → JR 大阪 → JR 京都（約 1 小時）。', tags:['交通'], address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6', mapsQuery:'Apartment Hotel 11 Nippombashi', duration:60, transitToNext:30 },
+    { time:'10:30', title:'おきもの屋 清水店', titleSub:'Kimono Rental', desc:'預約 10:00 場。全妝 + 著裝 + 髮型約 60 分鐘。', tags:['和服','預約'], address:'〒605-0862 京都府京都市東山区清水4丁目188 清水ビル 2F', mapsQuery:'おきもの屋 京都清水店', duration:60, transitToNext:0 },
+    { time:'11:30', title:'八坂塔・二三年坂', titleSub:'Yasaka Pagoda', desc:'1 小時專業外拍。', tags:['外拍','世界遺產'], address:'〒605-0827 京都府京都市東山区八坂上町388', mapsQuery:'八坂の塔 法観寺', duration:60, transitToNext:0 },
+    { time:'12:30', title:'還和服 · 計程車', titleSub:'Return & Taxi', desc:'回 Okimono 屋還和服。叫計程車 → 下鴨神社（約 25 分鐘 ¥2,500）。', tags:['交通'], address:'〒605-0862 京都府京都市東山区清水4丁目188', mapsQuery:'おきもの屋 京都清水店', duration:30, transitToNext:30 },
+    { time:'13:30', title:'下鴨神社', titleSub:'Shimogamo Shrine', desc:'世界遺產、京都最古老神社之一。', tags:['神社','世界遺產'], address:'〒606-0807 京都府京都市左京区下鴨泉川町59', mapsQuery:'下鴨神社', duration:15, transitToNext:0 },
+    { time:'13:45', title:'相生社', titleSub:'Aioi-no-Yashiro', desc:'下鴨神社境內、戀愛結緣神社。日本罕見的戒指型御守 💍', tags:['神社','御守'], address:'〒606-0807 京都府京都市左京区下鴨泉川町59', mapsQuery:'下鴨神社 相生社', duration:45, transitToNext:0 },
+    { time:'14:30', title:'加茂みたらし茶屋', titleSub:'Kamo Mitarashi', desc:'下鴨神社旁百年茶屋、御手洗團子發源地。', tags:['午餐','和菓子'], address:'〒606-0808 京都府京都市左京区下鴨松ノ木町53', mapsQuery:'加茂みたらし茶屋', duration:60, transitToNext:30 },
+    { time:'16:00', title:'伏見稻荷大社', titleSub:'Fushimi Inari', desc:'京阪電車 出町柳 → 伏見稻荷（25 分 ¥280）。千本鳥居。', tags:['神社','千本鳥居'], address:'〒612-0882 京都府京都市伏見区深草薮之内町68', mapsQuery:'伏見稲荷大社', duration:90, transitToNext:30 },
+    { time:'18:00', title:'AIN SOPH. Journey', titleSub:'Vegan Dinner', desc:'100% 純素 + 五葷抜き對應 ⭐ 河原町商圈。', tags:['晚餐','素食','無五辛'], address:'〒604-8043 京都府京都市中京区裏寺町597-1', mapsQuery:'AIN SOPH Journey 京都', duration:120, transitToNext:0 }
+  ],
+  d4: [
+    { time:'09:00', title:'退房 · 寄行李', titleSub:'Check-out', desc:'飯店退房、行李寄存。', tags:['退房'], address:'〒542-0073 大阪府大阪市中央区日本橋1-11-6', mapsQuery:'Apartment Hotel 11 Nippombashi', duration:60, transitToNext:0 },
+    { time:'10:00', title:'最後巡禮', titleSub:'Last Shopping', desc:'心齋橋 / 道頓堀 / Don Quijote 補貨。', tags:['購物'], address:'〒542-0071 大阪府大阪市中央区道頓堀1-7-13', mapsQuery:'Don Quijote 道頓堀店', duration:120, transitToNext:0 },
+    { time:'12:00', title:'取行李 · DOTON PLAZA', titleSub:'Walk to Plaza', desc:'從飯店走 8 分鐘到 DOTON PLAZA。售票機買回程票 ¥1,800/人 × 2。', tags:['交通'], address:'〒556-0011 大阪府大阪市浪速区難波中2-10-70', mapsQuery:'DOTON PLAZA 大阪', duration:50, transitToNext:10 },
+    { time:'13:00', title:'利木津巴士回程', titleSub:'To KIX', desc:'DOTON PLAZA → 關西機場。約 60 分鐘。', tags:['交通'], address:'DOTON PLAZA 大阪 1F', mapsQuery:'DOTON PLAZA 大阪', duration:60, transitToNext:0 },
+    { time:'14:00', title:'抵達 KIX', titleSub:'Kansai Airport', desc:'Check-in、托運行李、過海關、退稅。', tags:['機場'], address:'〒549-0001 大阪府泉佐野市泉州空港北1', mapsQuery:'関西国際空港 第1ターミナル', duration:135, transitToNext:0 },
+    { time:'16:15', title:'CX565 起飛', titleSub:'Cathay Pacific', desc:'KIX → TPE、2 小時。VOML 機上素餐。', tags:['航班'], address:'', mapsQuery:'', duration:120, transitToNext:0 },
+    { time:'18:15', title:'抵達桃機', titleSub:'TPE Arrival', desc:'入境、領行李。', tags:['抵達'], address:'桃園市大園區航站南路 9 號', mapsQuery:'桃園機場第一航廈', duration:45, transitToNext:0 },
+    { time:'19:00', title:'回家', titleSub:'Home', desc:'台灣大車隊計程車從 T1 17 號柱接送回新店。', tags:['交通'], address:'新北市新店區北宜路二段 339 巷 10 號', mapsQuery:'新北市新店區北宜路二段339巷', duration:60, transitToNext:0 }
+  ]
+};
+
+const STORAGE = 'trip_planner_v2';
+
+// ================== State ==================
+let appData = null;
+let editingStopId = null;
+let editingTripId = null;
+let toastTimer = null;
+
+// ================== Utils ==================
+function uid(prefix) {
+  return prefix + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+async function copyText(text, label) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('已複製 ' + (label || ''));
+      return true;
+    } catch (e) {}
+  }
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.setAttribute('readonly', '');
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(ok ? '已複製 ' + (label || '') : '複製失敗');
+    return ok;
+  } catch (e) {
+    showToast('複製失敗');
+    return false;
+  }
+}
+
+function openMaps(query) {
+  if (!query) {
+    showToast('沒有導航資料');
+    return;
+  }
+  const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+function timeToMinutes(t) {
+  if (!t) return 0;
+  const p = t.split(':').map(Number);
+  if (p.length < 2 || isNaN(p[0]) || isNaN(p[1])) return 0;
+  return p[0] * 60 + p[1];
+}
+
+function minutesToTime(m) {
+  m = ((m % 1440) + 1440) % 1440;
+  return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+}
+
+function validateTimeFormat(t) {
+  if (!t) return false;
+  return /^([01]?\d|2[0-3]):[0-5]\d$/.test(t);
+}
+
+function addDays(dateStr, n) {
+  // 用 T12:00:00 中午、避免時區跨日；用本地時間取值、避免 toISOString UTC 倒退
+  const d = new Date(dateStr + 'T12:00:00');
+  d.setDate(d.getDate() + n);
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function formatDateLabel(dateStr, dayNum) {
+  if (!dateStr) return 'Day ' + dayNum;
+  const parts = dateStr.split('-');
+  return parts[1] + '/' + parts[2] + ' Day' + dayNum;
+}
+
+// ================== Storage ==================
+function loadAppData() {
+  try {
+    const raw = localStorage.getItem(STORAGE);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.version === 2) return parsed;
+    }
+  } catch (e) {}
+
+  // Migration from v1 (osaka_trip_data_v1)
+  try {
+    const v1 = localStorage.getItem('osaka_trip_data_v1');
+    if (v1) {
+      const old = JSON.parse(v1);
+      if (old && old.day1) {
+        return migrateV1ToV2(old);
+      }
+    }
+  } catch (e) {}
+
+  // Brand new
+  return createDefaultData();
+}
+
+function migrateV1ToV2(old) {
+  const oldProgress = (() => {
+    try { return JSON.parse(localStorage.getItem('osaka_trip_progress_v1') || '{}'); } catch (e) { return {}; }
+  })();
+
+  const tripId = uid('trip');
+  const days = [];
+  ['day1','day2','day3','day4'].forEach((k, i) => {
+    if (old[k]) {
+      days.push({
+        id: uid('day'),
+        date: old[k].date || addDays('2026-05-27', i),
+        label: old[k].label || ('Day ' + (i+1)),
+        stops: (old[k].stops || []).map(s => ({
+          id: s.id || uid('stop'),
+          time: s.time || '09:00',
+          title: s.title || '',
+          titleSub: s.titleSub || '',
+          desc: s.desc || '',
+          tags: s.tags || [],
+          address: s.address || '',
+          mapsQuery: s.mapsQuery || '',
+          duration: s.duration || 60,
+          transitToNext: s.transitToNext || 0
+        }))
+      });
+    }
+  });
+
+  return {
+    version: 2,
+    trips: [{
+      id: tripId,
+      name: '大阪京都 2026',
+      cover: '🌸',
+      createdAt: new Date().toISOString(),
+      days: days
+    }],
+    currentTripId: tripId,
+    currentDayId: days[0] ? days[0].id : null,
+    progress: oldProgress
+  };
+}
+
+function createDefaultData() {
+  const tripId = uid('trip');
+  const days = ['d1','d2','d3','d4'].map((k, i) => {
+    const dayId = uid('day');
+    return {
+      id: dayId,
+      date: addDays('2026-05-27', i),
+      label: ['5/27 抵達','5/28 大阪','5/29 京都','5/30 返程'][i],
+      stops: DEFAULT_OSAKA_STOPS[k].map(s => ({
+        id: uid('stop'),
+        ...s
+      }))
+    };
+  });
+
+  return {
+    version: 2,
+    trips: [{
+      id: tripId,
+      name: '大阪京都 2026',
+      cover: '🌸',
+      createdAt: new Date().toISOString(),
+      days: days
+    }],
+    currentTripId: tripId,
+    currentDayId: days[0].id,
+    progress: {}
+  };
+}
+
+function saveAppData() {
+  try {
+    localStorage.setItem(STORAGE, JSON.stringify(appData));
+  } catch (e) {
+    showToast('儲存失敗、可能空間不足');
+  }
+}
+
+// ================== Helpers ==================
+function getCurrentTrip() {
+  return appData.trips.find(t => t.id === appData.currentTripId) || appData.trips[0];
+}
+
+function getCurrentDay() {
+  const trip = getCurrentTrip();
+  if (!trip) return null;
+  return trip.days.find(d => d.id === appData.currentDayId) || trip.days[0];
+}
+
+// 自動推算時間（從第一站開始、依 duration + transitToNext 推算後續）
+function recalculateTimes(day, firstTime) {
+  if (!day || !day.stops || day.stops.length === 0) return;
+  let cur = timeToMinutes(firstTime || day.stops[0].time || '09:00');
+  day.stops.forEach((s, i) => {
+    s.time = minutesToTime(cur);
+    cur += (s.duration || 60) + (s.transitToNext || 0);
+  });
+}
+
+// ================== Render: Top Bar ==================
+function renderTopBar() {
+  const trip = getCurrentTrip();
+  if (!trip) return;
+  document.getElementById('tripCover').textContent = trip.cover || '✈️';
+  document.getElementById('tripName').textContent = trip.name;
+  document.getElementById('tripTitle').textContent = trip.name;
+  document.getElementById('tripTitleEn').textContent = trip.cover + ' ' + trip.name;
+  const dayCount = trip.days.length;
+  document.getElementById('dateStamp').textContent = '— ' + dayCount + 'D' + (dayCount-1) + 'N · TRIP PLANNER —';
+}
+
+// ================== Render: Day Tabs ==================
+function renderDayTabs() {
+  const trip = getCurrentTrip();
+  if (!trip) return;
+  const c = document.getElementById('dayTabs');
+  c.innerHTML = '';
+
+  trip.days.forEach((d, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'day-tab' + (appData.currentDayId === d.id ? ' active' : '');
+    const dateParts = d.date ? d.date.split('-') : [];
+    const shortDate = dateParts.length === 3 ? (dateParts[1] + '/' + dateParts[2]) : ('Day ' + (i+1));
+    btn.innerHTML = '<span class="day-tab-date">' + shortDate + '</span><span class="day-tab-label">DAY ' + (i+1) + '</span>';
+    btn.addEventListener('click', () => switchDay(d.id));
+    c.appendChild(btn);
+  });
+
+  // 新增 day 按鈕
+  const addBtn = document.createElement('button');
+  addBtn.className = 'day-tab add';
+  addBtn.innerHTML = '＋';
+  addBtn.title = '新增一天';
+  addBtn.addEventListener('click', addNewDay);
+  c.appendChild(addBtn);
+}
+
+function switchDay(dayId) {
+  appData.currentDayId = dayId;
+  saveAppData();
+  renderDayTabs();
+  renderTimeline();
+}
+
+function addNewDay() {
+  const trip = getCurrentTrip();
+  if (!trip) return;
+  const lastDay = trip.days[trip.days.length - 1];
+  const newDate = lastDay ? addDays(lastDay.date, 1) : new Date().toISOString().slice(0, 10);
+  const newDay = {
+    id: uid('day'),
+    date: newDate,
+    label: 'Day ' + (trip.days.length + 1),
+    stops: []
+  };
+  trip.days.push(newDay);
+  appData.currentDayId = newDay.id;
+  saveAppData();
+  renderDayTabs();
+  renderTimeline();
+  showToast('已新增 ' + newDate);
+}
+
+// ================== Render: Timeline ==================
+function renderTimeline() {
+  const c = document.getElementById('timeline');
+  const day = getCurrentDay();
+  if (!day) {
+    c.innerHTML = '<div class="empty-day">沒有資料</div>';
+    return;
+  }
+  if (!day.stops || day.stops.length === 0) {
+    c.innerHTML = '<div class="empty-day">這天還沒有景點<br>點下方「＋ 新增景點」或使用 AI 助理</div>';
+    updateProgress();
+    updateNowCard();
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+
+  day.stops.forEach(stop => {
+    const done = !!appData.progress[stop.id];
+    const art = document.createElement('article');
+    art.className = 'stop' + (done ? ' completed' : '');
+    art.dataset.id = stop.id;
+
+    // Handle 拖曳手柄 + 上下箭頭
+    const handle = document.createElement('div');
+    handle.className = 'stop-handle';
+    const idx = day.stops.indexOf(stop);
+
+    const upBtn = document.createElement('button');
+    upBtn.className = 'handle-arrow';
+    upBtn.innerHTML = '▲';
+    upBtn.disabled = idx === 0;
+    upBtn.addEventListener('click', (e) => { e.stopPropagation(); moveStop(stop.id, -1); });
+    handle.appendChild(upBtn);
+
+    const grip = document.createElement('div');
+    grip.className = 'handle-grip';
+    grip.innerHTML = '⋮⋮';
+    grip.dataset.stopId = stop.id;
+    handle.appendChild(grip);
+
+    const downBtn = document.createElement('button');
+    downBtn.className = 'handle-arrow';
+    downBtn.innerHTML = '▼';
+    downBtn.disabled = idx === day.stops.length - 1;
+    downBtn.addEventListener('click', (e) => { e.stopPropagation(); moveStop(stop.id, 1); });
+    handle.appendChild(downBtn);
+
+    art.appendChild(handle);
+
+    // Dot
+    const dot = document.createElement('div');
+    dot.className = 'stop-dot';
+    art.appendChild(dot);
+
+    // Header
+    const hdr = document.createElement('div');
+    hdr.className = 'stop-header';
+
+    const tm = document.createElement('div');
+    tm.className = 'stop-time';
+    tm.textContent = stop.time || '--:--';
+    hdr.appendChild(tm);
+
+    const chk = document.createElement('button');
+    chk.className = 'stop-check';
+    chk.innerHTML = '✓';
+    chk.addEventListener('click', () => toggleComplete(stop.id));
+    hdr.appendChild(chk);
+
+    art.appendChild(hdr);
+
+    // Title
+    if (stop.title) {
+      const t = document.createElement('h2');
+      t.className = 'stop-title';
+      t.textContent = stop.title;
+      art.appendChild(t);
+    }
+
+    if (stop.titleSub) {
+      const s = document.createElement('div');
+      s.className = 'stop-title-sub';
+      s.textContent = stop.titleSub;
+      art.appendChild(s);
+    }
+
+    // Tags
+    if (stop.tags && stop.tags.length > 0) {
+      const m = document.createElement('div');
+      m.className = 'stop-meta';
+      stop.tags.forEach(tg => {
+        const sp = document.createElement('span');
+        let cls = 'tag';
+        if (tg.indexOf('世界遺產') !== -1 || tg.indexOf('預約') !== -1) cls += ' gold';
+        else if (tg.indexOf('無五辛') !== -1) cls += ' red';
+        sp.className = cls;
+        sp.textContent = tg;
+        m.appendChild(sp);
+      });
+      art.appendChild(m);
+    }
+
+    // Description
+    if (stop.desc) {
+      const d = document.createElement('p');
+      d.className = 'stop-desc';
+      d.textContent = stop.desc;
+      art.appendChild(d);
+    }
+
+    // Times info
+    if (stop.duration || stop.transitToNext) {
+      const ts = document.createElement('div');
+      ts.className = 'stop-times';
+      if (stop.duration) {
+        const s1 = document.createElement('span');
+        s1.innerHTML = '⏱ 停留 ' + stop.duration + ' 分';
+        ts.appendChild(s1);
+      }
+      if (stop.transitToNext) {
+        const s2 = document.createElement('span');
+        s2.innerHTML = '→ 交通 ' + stop.transitToNext + ' 分';
+        ts.appendChild(s2);
+      }
+      art.appendChild(ts);
+    }
+
+    // Actions
+    if (stop.address || stop.mapsQuery) {
+      const a = document.createElement('div');
+      a.className = 'actions';
+
+      const cb = document.createElement('button');
+      cb.className = 'btn';
+      cb.innerHTML = '<span class="btn-icon">⊕</span><span>複製地址</span>';
+      cb.addEventListener('click', () => {
+        if (stop.address) copyText(stop.address, '地址');
+        else showToast('沒有地址資料');
+      });
+      a.appendChild(cb);
+
+      const mb = document.createElement('button');
+      mb.className = 'btn primary';
+      mb.innerHTML = '<span class="btn-icon">▷</span><span>導航</span>';
+      mb.addEventListener('click', () => openMaps(stop.mapsQuery));
+      a.appendChild(mb);
+
+      art.appendChild(a);
+    }
+
+    // Edit / Delete
+    const ctl = document.createElement('div');
+    ctl.className = 'stop-controls';
+
+    const eb = document.createElement('button');
+    eb.className = 'stop-ctrl-btn';
+    eb.textContent = '✎ 編輯';
+    eb.addEventListener('click', () => openEditStopModal(stop.id));
+    ctl.appendChild(eb);
+
+    const db = document.createElement('button');
+    db.className = 'stop-ctrl-btn danger';
+    db.textContent = '✕ 刪除';
+    db.addEventListener('click', () => deleteStop(stop.id));
+    ctl.appendChild(db);
+
+    art.appendChild(ctl);
+    frag.appendChild(art);
+  });
+
+  c.innerHTML = '';
+  c.appendChild(frag);
+
+  initSortable();
+  updateProgress();
+  updateNowCard();
+}
+
+// ================== 排序：上下箭頭 ==================
+function moveStop(stopId, direction) {
+  const day = getCurrentDay();
+  if (!day) return;
+  const idx = day.stops.findIndex(s => s.id === stopId);
+  if (idx === -1) return;
+  const newIdx = idx + direction;
+  if (newIdx < 0 || newIdx >= day.stops.length) return;
+  const [moved] = day.stops.splice(idx, 1);
+  day.stops.splice(newIdx, 0, moved);
+  recalculateTimes(day, day.stops[0].time);
+  saveAppData();
+  renderTimeline();
+  showToast('已移動、時間自動更新');
+}
+
+// ================== 排序：自寫 touch 拖曳（不依賴 CDN）==================
+let dragState = null;
+
+function initSortable() {
+  const container = document.getElementById('timeline');
+  if (!container) return;
+
+  const grips = container.querySelectorAll('.handle-grip');
+  grips.forEach(grip => {
+    grip.addEventListener('touchstart', onDragTouchStart, { passive: false });
+    // 桌面版滑鼠也支援
+    grip.addEventListener('mousedown', onDragMouseStart);
+  });
+}
+
+function getStopEls() {
+  return Array.from(document.querySelectorAll('#timeline .stop'));
+}
+
+function onDragTouchStart(e) {
+  const grip = e.currentTarget;
+  const stopId = grip.dataset.stopId;
+  const stopEl = grip.closest('.stop');
+  if (!stopEl) return;
+
+  e.preventDefault();
+
+  const longPressTimer = setTimeout(() => {
+    startDrag(stopEl, stopId, e.touches[0].clientY);
+  }, 250);
+
+  const cancelStart = () => {
+    clearTimeout(longPressTimer);
+    grip.removeEventListener('touchend', cancelStart);
+    grip.removeEventListener('touchmove', cancelStart);
+  };
+  grip.addEventListener('touchend', cancelStart, { once: true });
+}
+
+function onDragMouseStart(e) {
+  const grip = e.currentTarget;
+  const stopId = grip.dataset.stopId;
+  const stopEl = grip.closest('.stop');
+  if (!stopEl) return;
+  e.preventDefault();
+  startDrag(stopEl, stopId, e.clientY);
+}
+
+function startDrag(stopEl, stopId, startY) {
+  if (navigator.vibrate) { try { navigator.vibrate(30); } catch(e){} }
+  dragState = { stopEl, stopId, startY };
+  stopEl.classList.add('dragging');
+
+  document.addEventListener('touchmove', onDragMove, { passive: false });
+  document.addEventListener('touchend', onDragEnd);
+  document.addEventListener('mousemove', onDragMove);
+  document.addEventListener('mouseup', onDragEnd);
+}
+
+function onDragMove(e) {
+  if (!dragState) return;
+  e.preventDefault();
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+  // 清除所有 drag-over 標記
+  getStopEls().forEach(el => {
+    el.classList.remove('drag-over-top', 'drag-over-bottom');
+  });
+
+  // 找出游標下方的 stop
+  const els = getStopEls().filter(el => el !== dragState.stopEl);
+  let target = null;
+  let insertBefore = true;
+  for (const el of els) {
+    const rect = el.getBoundingClientRect();
+    const mid = rect.top + rect.height / 2;
+    if (clientY < mid) {
+      target = el;
+      insertBefore = true;
+      break;
+    } else if (clientY < rect.bottom) {
+      target = el;
+      insertBefore = false;
+      break;
+    }
+  }
+
+  if (target) {
+    target.classList.add(insertBefore ? 'drag-over-top' : 'drag-over-bottom');
+    dragState.target = target;
+    dragState.insertBefore = insertBefore;
+  } else {
+    // 拖到最下方
+    if (els.length > 0) {
+      dragState.target = els[els.length - 1];
+      dragState.insertBefore = false;
+      els[els.length - 1].classList.add('drag-over-bottom');
+    }
+  }
+}
+
+function onDragEnd() {
+  document.removeEventListener('touchmove', onDragMove);
+  document.removeEventListener('touchend', onDragEnd);
+  document.removeEventListener('mousemove', onDragMove);
+  document.removeEventListener('mouseup', onDragEnd);
+
+  if (!dragState) return;
+
+  const { stopId, target, insertBefore } = dragState;
+  getStopEls().forEach(el => {
+    el.classList.remove('dragging', 'drag-over-top', 'drag-over-bottom');
+  });
+
+  if (target) {
+    const targetId = target.dataset.id;
+    const day = getCurrentDay();
+    if (day && targetId !== stopId) {
+      const fromIdx = day.stops.findIndex(s => s.id === stopId);
+      const [moved] = day.stops.splice(fromIdx, 1);
+      let toIdx = day.stops.findIndex(s => s.id === targetId);
+      if (!insertBefore) toIdx += 1;
+      day.stops.splice(toIdx, 0, moved);
+      recalculateTimes(day, day.stops[0].time);
+      saveAppData();
+      renderTimeline();
+      showToast('已重新排序、時間自動更新');
+    }
+  }
+  dragState = null;
+}
+
+// ================== Progress ==================
+function updateProgress() {
+  const day = getCurrentDay();
+  if (!day) return;
+  const total = day.stops.length;
+  const done = day.stops.filter(s => appData.progress[s.id]).length;
+  const pct = total > 0 ? (done / total) * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total;
+  document.getElementById('progressDay').textContent = (day.label || 'DAY').toUpperCase() + ' PROGRESS';
+}
+
+function toggleComplete(id) {
+  appData.progress[id] = !appData.progress[id];
+  if (!appData.progress[id]) delete appData.progress[id];
+  saveAppData();
+  const el = document.querySelector('.stop[data-id="' + id + '"]');
+  if (el) el.classList.toggle('completed', !!appData.progress[id]);
+  updateProgress();
+  updateNowCard();
+}
+
+// ================== Now Card ==================
+function updateNowCard() {
+  const cE = document.getElementById('nowContent');
+  const tE = document.getElementById('nowTime');
+  const trip = getCurrentTrip();
+  const day = getCurrentDay();
+  if (!day || !trip) return;
+
+  const now = new Date();
+  const today = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+
+  // Find today's day in current trip
+  let todayDay = trip.days.find(d => d.date === today);
+
+  if (!todayDay) {
+    // 不在 trip 期間、顯示距離下一個日期
+    const future = trip.days.filter(d => d.date > today).sort((a,b) => a.date.localeCompare(b.date));
+    if (future.length > 0) {
+      const target = new Date(future[0].date + 'T09:00:00+09:00');
+      const diff = target - now;
+      const days = Math.floor(diff/86400000);
+      const hours = Math.floor((diff%86400000)/3600000);
+      cE.textContent = '準備出發 · ' + future[0].label;
+      tE.textContent = days > 0 ? ('還有 ' + days + ' 天 ' + hours + ' 小時') : ('還有 ' + hours + ' 小時');
+    } else {
+      cE.textContent = '行程已結束 💜';
+      tE.textContent = '';
+    }
+    return;
+  }
+
+  // 在 trip 期間、但看的不是今天
+  if (day.id !== todayDay.id) {
+    cE.innerHTML = '查看：<strong>' + day.label + '</strong>';
+    tE.textContent = '今天是 ' + todayDay.label;
+    return;
+  }
+
+  // 看今天、找現在該在哪
+  const nowMins = now.getHours()*60 + now.getMinutes();
+  let curr = null, next = null;
+  for (let i = 0; i < day.stops.length; i++) {
+    const s = day.stops[i];
+    const start = timeToMinutes(s.time);
+    const end = start + (s.duration || 60);
+    if (nowMins >= start && nowMins < end) {
+      curr = s;
+      next = day.stops[i+1] || null;
+      break;
+    }
+    if (nowMins < start) { next = s; break; }
+  }
+
+  document.querySelectorAll('.stop').forEach(el => el.classList.remove('now'));
+
+  if (curr) {
+    cE.innerHTML = '現在：<strong>' + curr.title + '</strong>';
+    const end = timeToMinutes(curr.time) + (curr.duration || 60);
+    const ni = next ? '　·　下一站 ' + next.time + ' ' + next.title : '';
+    tE.textContent = '預計到 ' + minutesToTime(end) + ni;
+    const t = document.querySelector('.stop[data-id="' + curr.id + '"]');
+    if (t) t.classList.add('now');
+  } else if (next) {
+    cE.innerHTML = '即將前往：<strong>' + next.title + '</strong>';
+    tE.textContent = next.time + ' 出發';
+    const t = document.querySelector('.stop[data-id="' + next.id + '"]');
+    if (t) t.classList.add('now');
+  } else {
+    cE.textContent = '今日行程結束 💜';
+    tE.textContent = '辛苦了';
+  }
+}
+
+// ================== Stop CRUD ==================
+function openAddStopModal() {
+  editingStopId = null;
+  document.getElementById('stopModalTitle').textContent = '新增景點';
+  ['fTime','fTitle','fTitleSub','fDesc','fAddress','fMapsQuery','fTags'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fDuration').value = '60';
+  document.getElementById('fTransit').value = '0';
+  document.getElementById('stopModal').classList.add('show');
+}
+
+function openEditStopModal(stopId) {
+  const day = getCurrentDay();
+  if (!day) return;
+  const stop = day.stops.find(s => s.id === stopId);
+  if (!stop) return;
+  editingStopId = stopId;
+  document.getElementById('stopModalTitle').textContent = '編輯景點';
+  document.getElementById('fTime').value = stop.time || '';
+  document.getElementById('fTitle').value = stop.title || '';
+  document.getElementById('fTitleSub').value = stop.titleSub || '';
+  document.getElementById('fDesc').value = stop.desc || '';
+  document.getElementById('fAddress').value = stop.address || '';
+  document.getElementById('fMapsQuery').value = stop.mapsQuery || '';
+  document.getElementById('fTags').value = (stop.tags || []).join(', ');
+  document.getElementById('fDuration').value = stop.duration || 60;
+  document.getElementById('fTransit').value = stop.transitToNext || 0;
+  document.getElementById('stopModal').classList.add('show');
+}
+
+function saveStop() {
+  const time = document.getElementById('fTime').value.trim();
+  const title = document.getElementById('fTitle').value.trim();
+  if (!title) { showToast('請填名稱'); return; }
+  if (time && !validateTimeFormat(time)) { showToast('時間格式：HH:MM'); return; }
+
+  const tagsRaw = document.getElementById('fTags').value.trim();
+  const tags = tagsRaw ? tagsRaw.split(/[,、,]/).map(t => t.trim()).filter(Boolean) : [];
+
+  const data = {
+    time: time || '09:00',
+    title: title,
+    titleSub: document.getElementById('fTitleSub').value.trim(),
+    desc: document.getElementById('fDesc').value.trim(),
+    address: document.getElementById('fAddress').value.trim(),
+    mapsQuery: document.getElementById('fMapsQuery').value.trim(),
+    tags: tags,
+    duration: parseInt(document.getElementById('fDuration').value) || 60,
+    transitToNext: parseInt(document.getElementById('fTransit').value) || 0
+  };
+
+  const day = getCurrentDay();
+  if (!day) return;
+
+  if (editingStopId) {
+    const idx = day.stops.findIndex(s => s.id === editingStopId);
+    if (idx !== -1) Object.assign(day.stops[idx], data);
+    showToast('已更新');
+  } else {
+    data.id = uid('stop');
+    day.stops.push(data);
+    // 依時間排序
+    day.stops.sort((a,b) => timeToMinutes(a.time) - timeToMinutes(b.time));
+    showToast('已新增');
+  }
+
+  saveAppData();
+  document.getElementById('stopModal').classList.remove('show');
+  renderTimeline();
+}
+
+function deleteStop(stopId) {
+  if (!confirm('確定要刪除這個景點嗎？')) return;
+  const day = getCurrentDay();
+  if (!day) return;
+  day.stops = day.stops.filter(s => s.id !== stopId);
+  if (appData.progress[stopId]) {
+    delete appData.progress[stopId];
+  }
+  saveAppData();
+  renderTimeline();
+  showToast('已刪除');
+}
+
+// ================== Trip Management ==================
+function openTripModal() {
+  const list = document.getElementById('tripList');
+  list.innerHTML = '';
+  appData.trips.forEach(trip => {
+    const card = document.createElement('button');
+    card.className = 'trip-card' + (trip.id === appData.currentTripId ? ' current' : '');
+
+    const cover = document.createElement('div');
+    cover.className = 'trip-card-cover';
+    cover.textContent = trip.cover || '✈️';
+    card.appendChild(cover);
+
+    const info = document.createElement('div');
+    info.className = 'trip-card-info';
+    const name = document.createElement('div');
+    name.className = 'trip-card-name';
+    name.textContent = trip.name;
+    const meta = document.createElement('div');
+    meta.className = 'trip-card-meta';
+    meta.textContent = trip.days.length + ' days · ' + trip.days.reduce((acc,d) => acc + d.stops.length, 0) + ' stops';
+    info.appendChild(name);
+    info.appendChild(meta);
+    card.appendChild(info);
+
+    const actions = document.createElement('div');
+    actions.className = 'trip-card-actions';
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'trip-card-action';
+    editBtn.innerHTML = '✎';
+    editBtn.addEventListener('click', (e) => { e.stopPropagation(); openTripEditModal(trip.id); });
+    actions.appendChild(editBtn);
+
+    if (appData.trips.length > 1) {
+      const delBtn = document.createElement('button');
+      delBtn.className = 'trip-card-action danger';
+      delBtn.innerHTML = '✕';
+      delBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteTrip(trip.id); });
+      actions.appendChild(delBtn);
+    }
+
+    card.appendChild(actions);
+
+    card.addEventListener('click', () => switchTrip(trip.id));
+    list.appendChild(card);
+  });
+  document.getElementById('tripModal').classList.add('show');
+}
+
+function switchTrip(tripId) {
+  appData.currentTripId = tripId;
+  const trip = getCurrentTrip();
+  if (trip && trip.days[0]) appData.currentDayId = trip.days[0].id;
+  saveAppData();
+  document.getElementById('tripModal').classList.remove('show');
+  renderAll();
+}
+
+function openTripEditModal(tripId) {
+  editingTripId = tripId;
+  const trip = appData.trips.find(t => t.id === tripId);
+  if (!trip) return;
+  document.getElementById('tripEditTitle').textContent = '編輯行程';
+  document.getElementById('tripCoverIn').value = trip.cover || '🌸';
+  document.getElementById('tripNameIn').value = trip.name;
+  document.getElementById('tripStartIn').value = trip.days[0] ? trip.days[0].date : '';
+  document.getElementById('tripDaysIn').value = trip.days.length;
+  document.getElementById('tripModal').classList.remove('show');
+  document.getElementById('tripEditModal').classList.add('show');
+}
+
+function openNewTripModal() {
+  editingTripId = null;
+  document.getElementById('tripEditTitle').textContent = '新增行程';
+  document.getElementById('tripCoverIn').value = '✈️';
+  document.getElementById('tripNameIn').value = '';
+  document.getElementById('tripStartIn').value = new Date().toISOString().slice(0,10);
+  document.getElementById('tripDaysIn').value = '4';
+  document.getElementById('tripModal').classList.remove('show');
+  document.getElementById('tripEditModal').classList.add('show');
+}
+
+function saveTripEdit() {
+  const cover = document.getElementById('tripCoverIn').value.trim() || '✈️';
+  const name = document.getElementById('tripNameIn').value.trim();
+  const start = document.getElementById('tripStartIn').value;
+  const days = parseInt(document.getElementById('tripDaysIn').value) || 1;
+
+  if (!name) { showToast('請填名稱'); return; }
+  if (!start) { showToast('請填開始日期'); return; }
+  if (days < 1 || days > 30) { showToast('天數須 1-30'); return; }
+
+  if (editingTripId) {
+    // 編輯：修改 cover、name；調整日期 / 天數
+    const trip = appData.trips.find(t => t.id === editingTripId);
+    if (!trip) return;
+    trip.cover = cover;
+    trip.name = name;
+
+    // 調整日期、保留現有 stop
+    const oldDays = trip.days;
+    const newDays = [];
+    for (let i = 0; i < days; i++) {
+      if (oldDays[i]) {
+        oldDays[i].date = addDays(start, i);
+        newDays.push(oldDays[i]);
+      } else {
+        newDays.push({
+          id: uid('day'),
+          date: addDays(start, i),
+          label: 'Day ' + (i+1),
+          stops: []
+        });
+      }
+    }
+    trip.days = newDays;
+    showToast('已更新');
+  } else {
+    // 新增
+    const newTrip = {
+      id: uid('trip'),
+      name: name,
+      cover: cover,
+      createdAt: new Date().toISOString(),
+      days: []
+    };
+    for (let i = 0; i < days; i++) {
+      newTrip.days.push({
+        id: uid('day'),
+        date: addDays(start, i),
+        label: 'Day ' + (i+1),
+        stops: []
+      });
+    }
+    appData.trips.push(newTrip);
+    appData.currentTripId = newTrip.id;
+    appData.currentDayId = newTrip.days[0].id;
+    showToast('已建立新行程');
+  }
+  saveAppData();
+  document.getElementById('tripEditModal').classList.remove('show');
+  renderAll();
+}
+
+function deleteTrip(tripId) {
+  if (appData.trips.length <= 1) { showToast('至少要保留一個行程'); return; }
+  const trip = appData.trips.find(t => t.id === tripId);
+  if (!trip) return;
+  if (!confirm('確定刪除「' + trip.name + '」？這會刪掉所有景點、無法復原。')) return;
+  appData.trips = appData.trips.filter(t => t.id !== tripId);
+  if (appData.currentTripId === tripId) {
+    appData.currentTripId = appData.trips[0].id;
+    appData.currentDayId = appData.trips[0].days[0] ? appData.trips[0].days[0].id : null;
+  }
+  saveAppData();
+  openTripModal();
+  renderAll();
+  showToast('已刪除行程');
+}
+
+// ================== AI Prompt 工作流 ==================
+function openAiModal() {
+  document.getElementById('aiInput').value = '';
+  document.getElementById('aiJsonInput').value = '';
+  document.getElementById('aiResult').style.display = 'none';
+  document.getElementById('aiInitialActions').style.display = 'grid';
+  document.getElementById('aiModal').classList.add('show');
+}
+
+function generateAiPrompt() {
+  const userReq = document.getElementById('aiInput').value.trim();
+  if (!userReq) { showToast('請輸入需求'); return; }
+
+  const trip = getCurrentTrip();
+  const day = getCurrentDay();
+  if (!trip || !day) return;
+
+  // 把當前行程簡化、不傳遞 id（讓 AI 不會搞混）
+  const tripSummary = {
+    trip_name: trip.name,
+    current_day: day.label,
+    current_date: day.date,
+    all_days: trip.days.map(d => ({
+      date: d.date,
+      label: d.label,
+      stops: d.stops.map(s => ({
+        time: s.time,
+        title: s.title,
+        titleSub: s.titleSub,
+        desc: s.desc,
+        tags: s.tags,
+        address: s.address,
+        mapsQuery: s.mapsQuery,
+        duration: s.duration,
+        transitToNext: s.transitToNext
+      }))
+    }))
+  };
+
+  const prompt = '我在用 Trip Planner App 規劃旅遊行程。\n\n' +
+    '【目前行程】\n' +
+    '```json\n' + JSON.stringify(tripSummary, null, 2) + '\n```\n\n' +
+    '【我的需求】\n' + userReq + '\n\n' +
+    '【請回應】\n' +
+    '請直接回給我 JSON、不要解釋。格式：\n' +
+    '```json\n' +
+    '{\n' +
+    '  "action": "replace_day" 或 "append_stops" 或 "insert_stops",\n' +
+    '  "target_day": "5/29 京都" (要修改的 day label，replace_day/append_stops/insert_stops 必填),\n' +
+    '  "stops": [\n' +
+    '    {\n' +
+    '      "time": "14:00",\n' +
+    '      "title": "清水寺",\n' +
+    '      "titleSub": "Kiyomizu-dera",\n' +
+    '      "desc": "...",\n' +
+    '      "tags": ["神社", "世界遺產"],\n' +
+    '      "address": "〒605-0862 京都府...",\n' +
+    '      "mapsQuery": "清水寺",\n' +
+    '      "duration": 90,\n' +
+    '      "transitToNext": 15\n' +
+    '    }\n' +
+    '  ]\n' +
+    '}\n' +
+    '```\n\n' +
+    'action 說明：\n' +
+    '- replace_day：替換整個 day 的 stops\n' +
+    '- append_stops：加到該 day 最後\n' +
+    '- insert_stops：依時間插入該 day（推薦這個）\n\n' +
+    '時間格式 HH:MM 24 小時制、地址含郵遞區號。';
+
+  document.getElementById('aiPromptBox').textContent = prompt;
+  document.getElementById('aiResult').style.display = 'block';
+  document.getElementById('aiInitialActions').style.display = 'none';
+}
+
+function copyAiPrompt() {
+  const txt = document.getElementById('aiPromptBox').textContent;
+  copyText(txt, 'Prompt');
+}
+
+function applyAiResult() {
+  const txt = document.getElementById('aiJsonInput').value.trim();
+  if (!txt) { showToast('請貼上 JSON'); return; }
+
+  let cleaned = txt;
+  // 移除 ```json ... ``` wrapping
+  cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
+
+  let data;
+  try {
+    data = JSON.parse(cleaned);
+  } catch (e) {
+    showToast('JSON 格式錯誤：' + e.message.slice(0, 30));
+    return;
+  }
+
+  if (!data || !data.action || !data.stops || !Array.isArray(data.stops)) {
+    showToast('JSON 結構錯誤、缺少 action 或 stops');
+    return;
+  }
+
+  const trip = getCurrentTrip();
+  if (!trip) return;
+
+  let targetDay = null;
+  if (data.target_day) {
+    targetDay = trip.days.find(d => d.label === data.target_day || d.date === data.target_day);
+  }
+  if (!targetDay) targetDay = getCurrentDay();
+  if (!targetDay) { showToast('找不到目標日期'); return; }
+
+  // 把 AI 給的 stops 加上 id
+  const newStops = data.stops.map(s => ({
+    id: uid('stop'),
+    time: s.time || '09:00',
+    title: s.title || '未命名',
+    titleSub: s.titleSub || '',
+    desc: s.desc || '',
+    tags: Array.isArray(s.tags) ? s.tags : [],
+    address: s.address || '',
+    mapsQuery: s.mapsQuery || s.title || '',
+    duration: parseInt(s.duration) || 60,
+    transitToNext: parseInt(s.transitToNext) || 0
+  }));
+
+  if (data.action === 'replace_day') {
+    if (!confirm('確定要替換「' + targetDay.label + '」整天的行程嗎？')) return;
+    targetDay.stops = newStops;
+  } else if (data.action === 'append_stops') {
+    targetDay.stops.push(...newStops);
+  } else {
+    // 預設 insert_stops
+    targetDay.stops.push(...newStops);
+    targetDay.stops.sort((a,b) => timeToMinutes(a.time) - timeToMinutes(b.time));
+  }
+
+  saveAppData();
+  appData.currentDayId = targetDay.id;
+  document.getElementById('aiModal').classList.remove('show');
+  renderAll();
+  showToast('AI 已套用 ' + newStops.length + ' 個景點');
+}
+
+// ================== Export / Import / Reset ==================
+function exportData() {
+  copyText(JSON.stringify(appData, null, 2), '完整資料 JSON');
+}
+
+function importData() {
+  const txt = prompt('貼上之前匯出的 JSON：');
+  if (!txt) return;
+  try {
+    const data = JSON.parse(txt);
+    if (!data || data.version !== 2 || !data.trips) {
+      showToast('資料格式錯誤');
+      return;
+    }
+    if (!confirm('確定要覆蓋現有資料嗎？')) return;
+    appData = data;
+    saveAppData();
+    renderAll();
+    showToast('已匯入');
+  } catch (e) {
+    showToast('JSON 格式錯誤');
+  }
+}
+
+function resetAll() {
+  if (!confirm('要清空所有資料、回到預設大阪行程嗎？\n所有自訂行程、景點、打勾都會消失。')) return;
+  localStorage.removeItem(STORAGE);
+  localStorage.removeItem('osaka_trip_data_v1');
+  localStorage.removeItem('osaka_trip_progress_v1');
+  appData = createDefaultData();
+  saveAppData();
+  renderAll();
+  showToast('已重設');
+}
+
+// ================== Render All ==================
+function renderAll() {
+  renderTopBar();
+  renderDayTabs();
+  renderTimeline();
+}
+
+// ================== Event Bindings ==================
+document.getElementById('tripSelector').addEventListener('click', openTripModal);
+document.getElementById('aiBtn').addEventListener('click', openAiModal);
+document.getElementById('aiToolBtn').addEventListener('click', openAiModal);
+document.getElementById('addStopBtn').addEventListener('click', openAddStopModal);
+document.getElementById('stopModalCancel').addEventListener('click', () => document.getElementById('stopModal').classList.remove('show'));
+document.getElementById('stopModalSave').addEventListener('click', saveStop);
+document.getElementById('stopModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
+document.getElementById('tripModalCancel').addEventListener('click', () => document.getElementById('tripModal').classList.remove('show'));
+document.getElementById('newTripBtn').addEventListener('click', openNewTripModal);
+document.getElementById('tripModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
+document.getElementById('tripEditCancel').addEventListener('click', () => document.getElementById('tripEditModal').classList.remove('show'));
+document.getElementById('tripEditSave').addEventListener('click', saveTripEdit);
+document.getElementById('tripEditModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
+document.getElementById('aiCancelBtn').addEventListener('click', () => document.getElementById('aiModal').classList.remove('show'));
+document.getElementById('aiModalCancel').addEventListener('click', () => document.getElementById('aiModal').classList.remove('show'));
+document.getElementById('aiGenBtn').addEventListener('click', generateAiPrompt);
+document.getElementById('aiCopyBtn').addEventListener('click', copyAiPrompt);
+document.getElementById('aiApplyBtn').addEventListener('click', applyAiResult);
+document.getElementById('aiModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
+document.getElementById('exportBtn').addEventListener('click', exportData);
+document.getElementById('importBtn').addEventListener('click', importData);
+document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+// ================== Init ==================
+function init() {
+  try {
+    appData = loadAppData();
+    saveAppData(); // 確保格式持久化（migration 後）
+    renderAll();
+    setInterval(updateNowCard, 60000);
+  } catch (e) {
+    console.error('Init failed:', e);
+    document.getElementById('timeline').innerHTML = '<p style="text-align:center;padding:20px;color:#999;">載入失敗：' + e.message + '</p>';
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 </script>
+
 </body>
 </html>
