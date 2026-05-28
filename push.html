@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2A1840">
+<title>GitHub Quick Push ｜ Trip</title>
+<style>
+:root {
+  --bg: #1a1625;
+  --paper: #2a2438;
+  --ink: #f5eff8;
+  --ink-soft: #b89fcb;
+  --ink-mute: #7c658e;
+  --line: #44384f;
+  --accent: #b89fcb;
+  --accent-deep: #5c3d7a;
+  --success: #8fa882;
+  --danger: #b85c5c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro", "Noto Sans TC", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 20px;
+  padding-bottom: 60px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--ink-mute);
+  font-size: 13px;
+  margin-bottom: 24px;
+  font-family: "SF Mono", Menlo, monospace;
+}
+
+.section {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field:last-child { margin-bottom: 0; }
+
+label {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-bottom: 5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+textarea.large {
+  min-height: 360px;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: white;
+}
+
+.btn.secondary {
+  background: var(--bg);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.btn.danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.status {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+  font-family: "SF Mono", Menlo, monospace;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.status.show { display: block; }
+
+.status.info { background: rgba(184, 159, 203, 0.15); color: var(--ink-soft); }
+.status.success { background: rgba(143, 168, 130, 0.15); color: var(--success); }
+.status.error { background: rgba(184, 92, 92, 0.15); color: var(--danger); }
+
+.meta-info {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: rgba(184, 159, 203, 0.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-family: "SF Mono", Menlo, monospace;
+  white-space: pre-wrap;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-mute);
+  flex-shrink: 0;
+}
+
+.toggle-dot.saved { background: var(--success); }
+
+.shortcut-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 20px;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>GitHub Quick Push</h1>
+  <div class="subtitle">henntaiyarouleegeorge-cell / Trip</div>
+
+  <div class="section">
+    <div class="toggle">
+      <div class="toggle-dot" id="tokenStatus"></div>
+      <div class="section-title" style="margin-bottom: 0;">Personal Access Token</div>
+    </div>
+    <div class="field">
+      <input type="password" id="token" placeholder="ghp_..." autocomplete="off">
+      <div class="hint">儲存在這台 iPhone 的瀏覽器、不會上傳</div>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" onclick="saveToken()">💾 儲存 Token</button>
+      <button class="btn danger" onclick="clearToken()">✕ 清除</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">檔案設定</div>
+    <div class="field">
+      <label>檔名（包含路徑）</label>
+      <input type="text" id="filepath" value="kyoto.html">
+      <div class="hint">例如 kyoto.html、japan.html、folder/file.html</div>
+    </div>
+    <div class="field">
+      <label>Commit 訊息</label>
+      <input type="text" id="commitMsg" placeholder="Update kyoto.html">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">檔案內容（貼整個 HTML）</div>
+    <div class="field">
+      <textarea id="content" class="large" placeholder="<!DOCTYPE html>..."></textarea>
+      <div class="hint" id="contentSize">0 KB</div>
+    </div>
+  </div>
+
+  <button class="btn primary" id="pushBtn" onclick="push()">🚀 一鍵覆蓋上傳</button>
+
+  <div class="status" id="status"></div>
+
+  <div class="meta-info" id="meta" style="display:none;"></div>
+
+  <div class="shortcut-hint">
+    💡 加到主畫面：Safari 分享 → 加到主畫面<br>
+    之後一鍵打開、不用每次找 URL
+  </div>
+
+</div>
+
+<script>
+'use strict';
+
+const OWNER = 'henntaiyarouleegeorge-cell';
+const REPO = 'Trip';
+const TOKEN_KEY = 'gh_pat_v1';
+
+function loadToken() {
+  try {
+    const t = localStorage.getItem(TOKEN_KEY);
+    if (t) {
+      document.getElementById('token').value = t;
+      document.getElementById('tokenStatus').classList.add('saved');
+    }
+  } catch (e) {}
+}
+
+function saveToken() {
+  const t = document.getElementById('token').value.trim();
+  if (!t) {
+    showStatus('error', '請輸入 Token');
+    return;
+  }
+  if (!t.startsWith('ghp_') && !t.startsWith('github_pat_')) {
+    if (!confirm('Token 格式怪怪的、確定要儲存嗎？')) return;
+  }
+  try {
+    localStorage.setItem(TOKEN_KEY, t);
+    document.getElementById('tokenStatus').classList.add('saved');
+    showStatus('success', '✓ Token 已儲存到這台 iPhone');
+  } catch (e) {
+    showStatus('error', '儲存失敗：' + e.message);
+  }
+}
+
+function clearToken() {
+  if (!confirm('確定清除 Token？')) return;
+  localStorage.removeItem(TOKEN_KEY);
+  document.getElementById('token').value = '';
+  document.getElementById('tokenStatus').classList.remove('saved');
+  showStatus('info', 'Token 已清除');
+}
+
+function showStatus(type, msg) {
+  const s = document.getElementById('status');
+  s.className = 'status show ' + type;
+  s.textContent = msg;
+}
+
+function showMeta(info) {
+  const m = document.getElementById('meta');
+  m.style.display = 'block';
+  m.textContent = info;
+}
+
+function utf8ToBase64(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+async function getFileSha(token, path) {
+  const url = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path;
+  const res = await fetch(url, {
+    headers: {
+      'Authorization': 'token ' + token,
+      'Accept': 'application/vnd.github+json'
+    }
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error('Status ' + res.status + ': ' + text);
+  }
+  const data = await res.json();
+  return data.sha;
+}
+
+async function push() {
+  const btn = document.getElementById('pushBtn');
+  const token = document.getElementById('token').value.trim();
+  const filepath = document.getElementById('filepath').value.trim();
+  const content = document.getElementById('content').value;
+  let commitMsg = document.getElementById('commitMsg').value.trim();
+
+  if (!token) {
+    showStatus('error', '請先輸入並儲存 Token');
+    return;
+  }
+  if (!filepath) {
+    showStatus('error', '請輸入檔名');
+    return;
+  }
+  if (!content) {
+    showStatus('error', '請貼上檔案內容');
+    return;
+  }
+  if (!commitMsg) commitMsg = 'Update ' + filepath;
+
+  btn.disabled = true;
+  btn.textContent = '⏳ 上傳中...';
+  showStatus('info', '步驟 1/2: 檢查檔案是否存在...');
+
+  try {
+    const sha = await getFileSha(token, filepath);
+    showStatus('info', sha ? '步驟 2/2: 覆蓋現有檔案...' : '步驟 2/2: 新建檔案...');
+
+    const url = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + filepath;
+    const body = {
+      message: commitMsg,
+      content: utf8ToBase64(content),
+      branch: 'main'
+    };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      const errData = await res.text();
+      throw new Error('Status ' + res.status + ': ' + errData);
+    }
+
+    const data = await res.json();
+    showStatus('success', '✓ 上傳成功！1-2 分鐘後 GitHub Pages 部署完成');
+    showMeta(
+      'commit: ' + (data.commit && data.commit.sha ? data.commit.sha.slice(0, 7) : '?') + '\n' +
+      'file: ' + filepath + '\n' +
+      'size: ' + (content.length / 1024).toFixed(1) + ' KB\n\n' +
+      '🌸 部署網址:\nhttps://henntaiyarouleegeorge-cell.github.io/Trip/' + filepath
+    );
+
+  } catch (e) {
+    showStatus('error', '✗ 失敗：' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 一鍵覆蓋上傳';
+  }
+}
+
+document.getElementById('content').addEventListener('input', (e) => {
+  const kb = (e.target.value.length / 1024).toFixed(1);
+  document.getElementById('contentSize').textContent = kb + ' KB';
+});
+
+document.getElementById('filepath').addEventListener('input', (e) => {
+  const msg = document.getElementById('commitMsg');
+  if (!msg.value || msg.value.startsWith('Update ')) {
+    msg.value = 'Update ' + e.target.value;
+  }
+});
+
+loadToken();
+</script>
+
+</body>
+</html>
